@@ -17,7 +17,12 @@
       "Bash(cmd /c \"rename \\\\\"C:\\\\\\\\Users\\\\\\\\murde\\\\\\\\Desktop\\\\\\\\블로그\\\\\" myBlog\")",
       "Bash(winget install:*)",
       "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh auth status 2>&1)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh repo create myBlog --private --source=. --remote=origin --push)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh repo edit myBlog --visibility public --accept-visibility-change-consequences)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh repo edit Seongyeonn-Hwang/myBlog --visibility public --accept-visibility-change-consequences)",
+      "Bash(node gen_blog.js)",
+      "Bash(git add:*)"
     ]
   }
 }

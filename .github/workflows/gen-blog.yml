@@ -1,0 +1,29 @@
+name: Generate Blog Files
+
+on:
+  push:
+    paths:
+      - 'blog/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run gen_blog.js
+        run: node gen_blog.js
+
+      - name: Commit blog_files.js
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog_files.js
+          git diff --cached --quiet || git commit -m "chore: update blog_files.js"
+          git push

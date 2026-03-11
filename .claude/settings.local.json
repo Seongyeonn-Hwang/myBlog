@@ -22,7 +22,8 @@
       "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh repo edit myBlog --visibility public --accept-visibility-change-consequences)",
       "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh repo edit Seongyeonn-Hwang/myBlog --visibility public --accept-visibility-change-consequences)",
       "Bash(node gen_blog.js)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(node gen_blog.js && git add . && git commit -m \"update: blog contents\" && git push)"
     ]
   }
 }

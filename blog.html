@@ -7,119 +7,98 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     @font-face {
-      font-family: 'SunBatang';
-      src: url('font/SunBatang-Medium.ttf') format('truetype');
+      font-family: '2002';
+      src: url('font/2002.ttf.ttf') format('truetype');
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'SunBatang', 'Apple SD Gothic Neo', sans-serif;
+      font-family: '2002', 'Apple SD Gothic Neo', sans-serif;
       background: #fff;
       color: #111;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* ===== 헤더 ===== */
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      background: #fff; border-bottom: 1px solid #ebebeb;
-      flex-shrink: 0;
+    /* ===== 목록 화면 ===== */
+    #list-view {
+      padding: 80px 40px 120px;
     }
-    .header-inner {
-      max-width: 1400px; margin: 0 auto; padding: 0 40px;
-      height: 60px; display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo { font-style: italic; font-weight: 700; font-size: 17px; }
-    .nav { display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.5px; color: #aaa; }
-    .nav a { color: #aaa; transition: color 0.15s; }
-    .nav a:hover, .nav a.active { color: #111; }
-    .nav span { color: #ddd; }
 
-    /* ===== 본문 레이아웃 ===== */
-    .workspace {
+    .list-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: #bbb;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .file-item {
       display: flex;
-      flex: 1;
-      overflow: hidden;
-      max-width: 1400px;
-      width: 100%;
-      margin: 0 auto;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 14px 0;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .file-item:hover { opacity: 0.5; }
+
+    .file-item-name {
+      font-size: 15px;
+      font-weight: 400;
+      color: #111;
     }
 
-    /* ===== 사이드바 (폴더 트리) ===== */
-    .sidebar {
-      width: 260px;
-      flex-shrink: 0;
-      border-right: 1px solid #ebebeb;
-      overflow-y: auto;
-      padding: 28px 0;
+    .file-item-path {
+      font-size: 11px;
+      color: #ccc;
+      letter-spacing: 0.3px;
     }
 
-    .sidebar-title {
+    .folder-group { margin-bottom: 40px; }
+
+    .folder-label {
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 1.2px;
-      color: #bbb;
-      padding: 0 20px 14px;
-      text-transform: uppercase;
-    }
-
-    .tree-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 20px;
-      font-size: 13px;
-      color: #555;
-      cursor: pointer;
-      transition: background 0.1s, color 0.1s;
-      user-select: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .tree-item:hover { background: #f7f7f7; color: #111; }
-    .tree-item.active { background: #f2f2f2; color: #111; font-weight: 500; }
-
-    .tree-icon { font-size: 12px; flex-shrink: 0; color: #bbb; }
-
-    .tree-children { display: none; }
-    .tree-children.open { display: block; }
-    .tree-children .tree-item { padding-left: 36px; }
-    .tree-children .tree-children .tree-item { padding-left: 52px; }
-
-    /* ===== 마크다운 뷰어 ===== */
-    .viewer {
-      flex: 1;
-      overflow-y: auto;
-      padding: 48px 60px;
-    }
-
-    .viewer-empty {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      font-size: 13px;
       color: #ccc;
-      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
-    .viewer-filename {
+    /* ===== 읽기 화면 ===== */
+    #reader-view {
+      display: none;
+      padding: 80px 40px 120px;
+    }
+
+    .reader-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #bbb;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      margin-bottom: 52px;
+      transition: color 0.15s;
+    }
+    .reader-back:hover { color: #111; }
+
+    .reader-filename {
       font-size: 11px;
       color: #bbb;
       letter-spacing: 0.8px;
-      margin-bottom: 32px;
-      padding-bottom: 16px;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
       border-bottom: 1px solid #ebebeb;
     }
 
-    /* 마크다운 스타일 */
-    .md-body { font-size: 14px; line-height: 1.9; color: #333; max-width: 720px; }
+    /* ===== 마크다운 ===== */
+    .md-body { font-size: 14px; line-height: 1.9; color: #333; }
     .md-body h1 { font-size: 22px; font-weight: 700; margin: 28px 0 12px; color: #111; }
     .md-body h2 { font-size: 18px; font-weight: 600; margin: 24px 0 10px; color: #111; }
     .md-body h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: #111; }
@@ -157,46 +136,33 @@
     .md-body th, .md-body td { border: 1px solid #e0e0e0; padding: 8px 12px; font-size: 13px; }
     .md-body th { background: #f7f7f7; font-weight: 500; }
 
-    /* frontmatter 숨김 */
-    .md-body .frontmatter { display: none; }
-
-    /* ===== 반응형 ===== */
-    @media (max-width: 768px) {
-      .sidebar { width: 200px; }
-      .viewer { padding: 32px 24px; }
+    @media (max-width: 600px) {
+      #list-view, #reader-view { padding: 48px 24px 80px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="header">
-    <div class="header-inner">
-      <a class="logo" href="index.html">Seongyeon Hwang</a>
-      <nav class="nav">
-        <a href="index.html">home</a>
-        <span>/</span>
-        <a href="blog.html" class="active">blog</a>
-        <span>/</span>
-        <a href="about.html">about</a>
-      </nav>
-    </div>
-  </header>
+  <!-- 목록 화면 -->
+  <div id="list-view">
+    <div id="file-list"></div>
+  </div>
 
-  <div class="workspace">
-    <aside class="sidebar">
-      <div class="sidebar-title">Blog</div>
-      <div id="tree-root"></div>
-    </aside>
-
-    <main class="viewer" id="viewer">
-      <div class="viewer-empty">파일을 선택하세요</div>
-    </main>
+  <!-- 읽기 화면 -->
+  <div id="reader-view">
+    <div class="reader-back" id="back-btn">← back</div>
+    <div class="reader-filename" id="reader-filename"></div>
+    <div class="md-body" id="reader-body"></div>
   </div>
 
   <script src="blog_files.js"></script>
   <script>
-    const treeRoot = document.getElementById('tree-root');
-    const viewer   = document.getElementById('viewer');
+    const listView       = document.getElementById('list-view');
+    const readerView     = document.getElementById('reader-view');
+    const fileList       = document.getElementById('file-list');
+    const backBtn        = document.getElementById('back-btn');
+    const readerFilename = document.getElementById('reader-filename');
+    const readerBody     = document.getElementById('reader-body');
 
     function stripFrontmatter(content) {
       return content.replace(/^---[\s\S]*?---\n?/, '').trim();
@@ -206,55 +172,46 @@
       return content.replace(/```dataviewjs[\s\S]*?```/g, '').trim();
     }
 
-    function renderFile(item) {
+    function openFile(item) {
       const raw     = stripFrontmatter(item.content || '');
       const cleaned = stripDataviewjs(raw);
-      const html    = marked.parse(cleaned);
 
-      viewer.innerHTML = `
-        <div class="viewer-filename">${item.path}</div>
-        <div class="md-body">${html}</div>
-      `;
+      readerFilename.textContent = item.path;
+      readerBody.innerHTML = marked.parse(cleaned);
+
+      listView.style.display   = 'none';
+      readerView.style.display = 'block';
+      window.scrollTo(0, 0);
     }
 
-    function buildTree(items, container) {
+    backBtn.addEventListener('click', () => {
+      readerView.style.display = 'none';
+      listView.style.display   = 'block';
+      window.scrollTo(0, 0);
+    });
+
+    function collectFiles(items, folderName) {
       items.forEach(item => {
         if (item.type === 'folder') {
-          const wrapper  = document.createElement('div');
-          const row      = document.createElement('div');
-          const children = document.createElement('div');
-
-          row.className = 'tree-item';
-          row.innerHTML = `<span class="tree-icon">▶</span><span>${item.name}</span>`;
-          children.className = 'tree-children';
-
-          row.addEventListener('click', () => {
-            const open = children.classList.toggle('open');
-            row.querySelector('.tree-icon').textContent = open ? '▼' : '▶';
-          });
-
-          buildTree(item.children, children);
-          wrapper.appendChild(row);
-          wrapper.appendChild(children);
-          container.appendChild(wrapper);
-
+          collectFiles(item.children, item.name);
         } else {
-          const row = document.createElement('div');
-          row.className = 'tree-item';
-          row.innerHTML = `<span class="tree-icon">—</span><span>${item.name}</span>`;
-
-          row.addEventListener('click', () => {
-            document.querySelectorAll('.tree-item.active').forEach(el => el.classList.remove('active'));
-            row.classList.add('active');
-            renderFile(item);
-          });
-
-          container.appendChild(row);
+          renderFileItem(item, folderName);
         }
       });
     }
 
-    buildTree(BLOG_FILES, treeRoot);
+    function renderFileItem(item, folderName) {
+      const el = document.createElement('div');
+      el.className = 'file-item';
+      el.innerHTML = `
+        <span class="file-item-name">- ${item.name}</span>
+        ${folderName ? `<span class="file-item-path">${folderName}</span>` : ''}
+      `;
+      el.addEventListener('click', () => openFile(item));
+      fileList.appendChild(el);
+    }
+
+    collectFiles(BLOG_FILES, '');
   </script>
 
 </body>

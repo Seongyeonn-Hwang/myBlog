@@ -16,6 +16,6 @@ const BLOG_FILES = [
     "type": "file",
     "name": "ㅂㅈㄷㅂㅈㄷ",
     "path": "ㅂㅈㄷㅂㅈㄷ.md",
-    "content": ""
+    "content": "안녕하세요 반갑습니다 오늘은 무엇을 하고 지낼 수 있을까요?"
   }
 ];

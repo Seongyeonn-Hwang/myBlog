@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:jvscholz.com)",
+      "WebFetch(domain:nahyeceramics.com)",
+      "WebSearch",
+      "WebFetch(domain:ggc.ggcf.kr)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebFetch(domain:namu.wiki)",
+      "Bash(for d:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/murde/Desktop/블로그/01. Daily notes/**)",
+      "Bash(done)",
+      "Bash(python \"C:/Users/murde/Desktop/블로그/gen.py\" 2>&1 || node -e \"console.log\\('node ok'\\)\" 2>&1)",
+      "Bash(cd \"C:/Users/murde/Desktop/블로그\" && node gen_posts.js)",
+      "Bash(git --version 2>&1 && gh --version 2>&1)",
+      "Bash(cmd /c \"rename \\\\\"C:\\\\\\\\Users\\\\\\\\murde\\\\\\\\Desktop\\\\\\\\블로그\\\\\" myBlog\")",
+      "Bash(winget install:*)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh auth status 2>&1)",
+      "Bash(git init:*)"
+    ]
+  }
+}

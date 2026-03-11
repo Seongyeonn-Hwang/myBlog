@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <h1 class="name">Seongyeon Hwang</h1>
+
+    <div class="avatar">
+      <img src="blog_main.jpg" alt="profile" />
+    </div>
+
+    <p class="clock">TIME IN MY CITY <span id="clock"></span> KST</p>
+
+    <nav class="nav">
+      <a href="index.html">home</a>
+      <span>/</span>
+      <a href="blog.html">blog</a>
+      <span>/</span>
+      <a href="about.html">about</a>
+      <span>/</span>
+      <a href="https://worldofwarcraft.blizzard.com/ko-kr/character/kr/azshara/%EC%95%84%EC%9D%B4%EC%8A%A4%EC%BF%A8%EB%A7%A8" target="_blank">icecoolman</a>
+    </nav>
+
+    <div class="indices">
+      <a class="index-item" href="https://finance.naver.com/sise/sise_index.naver?code=KOSPI" target="_blank">
+        <span class="index-name">KOSPI</span>
+        <span class="index-value" id="kospi-value">—</span>
+        <span class="index-change" id="kospi-change">—</span>
+      </a>
+      <div class="index-sep">·</div>
+      <a class="index-item" href="https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ" target="_blank">
+        <span class="index-name">KOSDAQ</span>
+        <span class="index-value" id="kosdaq-value">—</span>
+        <span class="index-change" id="kosdaq-change">—</span>
+      </a>
+      <div class="index-sep">·</div>
+      <a class="index-item" href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank">
+        <span class="index-name">S&amp;P 500</span>
+        <span class="index-value" id="sp500-value">—</span>
+        <span class="index-change" id="sp500-change">—</span>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    // 시계
+    function updateClock() {
+      const time = new Date().toLocaleTimeString('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+      document.getElementById('clock').textContent = time + ' KST';
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // 주가 지수
+    async function fetchIndex(symbol, valueId, changeId) {
+      const proxy = 'https://corsproxy.io/?';
+      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=5d`;
+      try {
+        const res  = await fetch(proxy + encodeURIComponent(url));
+        const data = await res.json();
+        const result = data.chart.result[0];
+        const closes = result.indicators.quote[0].close.filter(v => v !== null);
+
+        const prev = closes[closes.length - 2];
+        const last = closes[closes.length - 1];
+        const pct  = ((last - prev) / prev) * 100;
+
+        document.getElementById(valueId).textContent =
+          last.toLocaleString('en-US', { maximumFractionDigits: 2 });
+
+        const changeEl = document.getElementById(changeId);
+        changeEl.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+        changeEl.className = 'index-change ' + (pct >= 0 ? 'up' : 'down');
+      } catch (e) {
+        document.getElementById(valueId).textContent = 'N/A';
+      }
+    }
+
+    fetchIndex('^KS11', 'kospi-value',  'kospi-change');
+    fetchIndex('^KQ11', 'kosdaq-value', 'kosdaq-change');
+    fetchIndex('^GSPC', 'sp500-value',  'sp500-change');
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Seongyeon Hwang</title>
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">Seongyeon Hwang</a>
+      <nav class="nav">
+        <a href="index.html">home</a>
+        <span>/</span>
+        <a href="blog.html" class="active">blog</a>
+        <span>/</span>
+        <a href="about.html">about</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-top">
+      <h2 class="page-title">Daily Note</h2>
+      <p class="post-count" id="post-count"></p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="2026">2026</button>
+      <button class="filter-btn" data-filter="2025">2025</button>
+    </div>
+
+    <div class="post-grid" id="post-grid"></div>
+  </main>
+
+  <!-- 포스트 뷰어 모달 -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <p class="modal-date" id="modal-date"></p>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="posts.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html>

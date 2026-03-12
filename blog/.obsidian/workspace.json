@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ㅂㅈㄷㅂㅈㄷ.md",
+                "file": "ㅈㅂ/새 파일.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ㅂㅈㄷㅂㅈㄷ"
+              "title": "새 파일"
             }
           }
         ],
@@ -198,8 +198,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "350d7589e39e7b7c",
+  "active": "bc4977132fb7fd34",
   "lastOpenFiles": [
+    "ㅂ213ㅈㄷㅂㅈㄷ.md",
+    "ㅂ213ㅈㄷㅂㅈㄷ - 복사본.md",
     "ㅈㅂ/새 파일.md",
     "ㅂㅈㄷㅂㅈㄷ.md",
     "ㅈㅂ"

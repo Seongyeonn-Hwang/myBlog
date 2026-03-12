@@ -44,8 +44,8 @@
         <span class="index-change" id="kosdaq-change">—</span>
       </a>
       <div class="index-sep">·</div>
-      <a class="index-item" href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank">
-        <span class="index-name">S&amp;P 500</span>
+      <a class="index-item" href="https://finance.yahoo.com/quote/%5EIXIC/" target="_blank">
+        <span class="index-name">NASDAQ</span>
         <span class="index-value" id="sp500-value">—</span>
         <span class="index-change" id="sp500-change">—</span>
       </a>
@@ -63,39 +63,48 @@
         second: '2-digit',
         hour12: false
       });
-      document.getElementById('clock').textContent = time + ' KST';
+      document.getElementById('clock').textContent = time;
     }
     updateClock();
     setInterval(updateClock, 1000);
 
     // 주가 지수
     async function fetchIndex(symbol, valueId, changeId) {
-      const proxy = 'https://corsproxy.io/?';
       const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=5d`;
-      try {
-        const res  = await fetch(proxy + encodeURIComponent(url));
-        const data = await res.json();
-        const result = data.chart.result[0];
-        const closes = result.indicators.quote[0].close.filter(v => v !== null);
+      const proxies = [
+        'https://api.allorigins.win/raw?url=',
+        'https://corsproxy.io/?',
+        'https://api.codetabs.com/v1/proxy?quest=',
+      ];
 
-        const prev = closes[closes.length - 2];
-        const last = closes[closes.length - 1];
-        const pct  = ((last - prev) / prev) * 100;
+      for (const proxy of proxies) {
+        try {
+          const res  = await fetch(proxy + encodeURIComponent(url));
+          const data = await res.json();
+          const result = data.chart.result[0];
+          const closes = result.indicators.quote[0].close.filter(v => v !== null);
 
-        document.getElementById(valueId).textContent =
-          last.toLocaleString('en-US', { maximumFractionDigits: 2 });
+          const prev = closes[closes.length - 2];
+          const last = closes[closes.length - 1];
+          const pct  = ((last - prev) / prev) * 100;
 
-        const changeEl = document.getElementById(changeId);
-        changeEl.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
-        changeEl.className = 'index-change ' + (pct >= 0 ? 'up' : 'down');
-      } catch (e) {
-        document.getElementById(valueId).textContent = 'N/A';
+          document.getElementById(valueId).textContent =
+            last.toLocaleString('en-US', { maximumFractionDigits: 2 });
+
+          const changeEl = document.getElementById(changeId);
+          changeEl.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+          changeEl.className = 'index-change ' + (pct >= 0 ? 'up' : 'down');
+          return;
+        } catch (e) {
+          continue;
+        }
       }
+      document.getElementById(valueId).textContent = 'N/A';
     }
 
     fetchIndex('^KS11', 'kospi-value',  'kospi-change');
     fetchIndex('^KQ11', 'kosdaq-value', 'kosdaq-change');
-    fetchIndex('^GSPC', 'sp500-value',  'sp500-change');
+    fetchIndex('^IXIC', 'sp500-value',  'sp500-change');
   </script>
 
 </body>

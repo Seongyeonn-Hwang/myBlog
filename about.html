@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Seongyeon Hwang</title>
+  <style>
+    @font-face {
+      font-family: 'NotoSansKR';
+      src: url('font/NotoSansKR-Regular.ttf') format('truetype');
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'NotoSansKR', 'Apple SD Gothic Neo', sans-serif;
+      background: #1a1a1a;
+      color: #ffffff;
+      min-height: 100vh;
+      padding: 64px 48px 120px;
+    }
+
+    /* ===== 사진 목록 ===== */
+    .photo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      margin-bottom: 64px;
+      max-width: 400px;
+    }
+
+    .photo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.3s;
+    }
+    .photo-item img:hover { filter: grayscale(0%); }
+
+    .photo-caption {
+      font-size: 12px;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+      font-family: 'Consolas', monospace;
+    }
+
+    /* ===== back ===== */
+    #back-btn {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+      color: #555;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 0.15s;
+    }
+    #back-btn:hover { color: #c0c0c0; }
+
+    @media (max-width: 600px) {
+      body { padding: 40px 20px 80px; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="photo-grid" id="photo-grid"></div>
+  <a href="index.html" id="back-btn"><- back</a>
+
+  <script src="about_content.js"></script>
+  <script>
+    const grid = document.getElementById('photo-grid');
+
+    ABOUT_ITEMS.forEach(item => {
+      const el  = document.createElement('div');
+      el.className = 'photo-item';
+      el.innerHTML = `
+        <img src="blog/999. withoutblog/${item.file}" alt="${item.caption}" loading="lazy" />
+        <span class="photo-caption">${item.caption}</span>
+      `;
+      grid.appendChild(el);
+    });
+  </script>
+
+</body>
+</html>

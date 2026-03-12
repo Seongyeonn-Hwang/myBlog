@@ -23,7 +23,14 @@
       "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\" && gh repo edit Seongyeonn-Hwang/myBlog --visibility public --accept-visibility-change-consequences)",
       "Bash(node gen_blog.js)",
       "Bash(git add:*)",
-      "Bash(node gen_blog.js && git add . && git commit -m \"update: blog contents\" && git push)"
+      "Bash(node gen_blog.js && git add . && git commit -m \"update: blog contents\" && git push)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(curl -s \"https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11?interval=1d&range=5d\" -H \"User-Agent: Mozilla/5.0\" | head -c 300)",
+      "Bash(curl -s \"https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2F%255EKS11%3Finterval%3D1d%26range%3D5d\" -H \"User-Agent: Mozilla/5.0\" | head -c 100 && echo \"\" && curl -s \"https://corsproxy.io/?https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2F%255EKS11%3Finterval%3D1d%26range%3D5d\" | head -c 100)",
+      "Bash(node gen_about.js)",
+      "Bash(cat > /c/Users/murde/Desktop/myBlog/update.bat << 'EOF'\n@echo off\nnode gen_blog.js\nnode gen_about.js\ngit add .\nset /p msg=\"Commit message \\(Enter = update\\): \"\nif \"%msg%\"==\"\" set msg=update\ngit commit -m \"%msg%\"\ngit push\npause\nEOF)",
+      "Bash(unix2dos /c/Users/murde/Desktop/myBlog/update.bat 2>/dev/null || sed -i 's/$/\\\\r/' /c/Users/murde/Desktop/myBlog/update.bat)"
     ]
   }
 }

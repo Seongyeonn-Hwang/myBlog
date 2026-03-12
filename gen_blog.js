@@ -5,11 +5,17 @@ const base = path.join(__dirname, 'blog');
 
 function scanDir(dir, relativePath) {
   const items = [];
+  const EXCLUDE = ['999. withoutblog'];
   const entries = fs.readdirSync(dir, { withFileTypes: true })
-    .filter(e => !e.name.startsWith('.'))
+    .filter(e => !e.name.startsWith('.') && !EXCLUDE.includes(e.name))
     .sort((a, b) => {
       if (a.isDirectory() && !b.isDirectory()) return -1;
       if (!a.isDirectory() && b.isDirectory()) return 1;
+      if (!a.isDirectory() && !b.isDirectory()) {
+        const mtimeA = fs.statSync(path.join(dir, a.name)).mtimeMs;
+        const mtimeB = fs.statSync(path.join(dir, b.name)).mtimeMs;
+        return mtimeB - mtimeA;
+      }
       return a.name.localeCompare(b.name, 'ko');
     });
 

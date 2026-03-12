@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+                "file": "999. withoutblog/About.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "정말로 비전공자가 코딩 할 수 있는 세상이 되었다."
+              "title": "About"
             }
           }
         ]
@@ -183,8 +183,24 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "97bb264e21cbb23d",
+  "active": "350d7589e39e7b7c",
   "lastOpenFiles": [
+    "무제.md",
+    "999. withoutblog/About.md",
+    "999. withoutblog",
+    "999. withoutblog/aboutimage/IMG_0875.png",
+    "999. withoutblog/aboutimage/6.png",
+    "999. withoutblog/aboutimage",
+    "999. withoutblog/aboutimage/33.jpg",
+    "999. withoutblog/aboutimage/9.jpg",
+    "999. withoutblog/aboutimage/17.png",
+    "999. withoutblog/aboutimage/31.png",
+    "999. withoutblog/aboutimage/30.jpg",
+    "999. withoutblog/aboutimage/29.jpg",
+    "999. withoutblog/aboutimage/28.jpg",
+    "Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+    "999. withoutblog/aboutimage/IMG_0877.png",
+    "6.jfif",
     "ㅈㅂ/새 파일.md",
     "폴더 1/21.md",
     "폴더 1/ㅅ1.md",
@@ -193,7 +209,6 @@
     "ㅂ213ㅈㄷㅂㅈㄷ - 복사본 - 복사본.md",
     "ㅂ213ㅈㄷㅂㅈㄷ - 복사본.md",
     "ㅂ213ㅈㄷㅂㅈㄷ.md",
-    "Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "ㅂㅈㄷㅂㅈㄷ.md",
     "ㅈㅂ"
   ]

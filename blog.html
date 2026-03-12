@@ -271,7 +271,7 @@
       const raw     = stripFrontmatter(content || '');
       const cleaned = stripDataviewjs(raw);
       const obs     = obsidianPreprocess(cleaned);
-      return marked.parse(obs);
+      return marked.parse(obs, { breaks: true });
     }
 
     function openFile(item, el) {

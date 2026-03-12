@@ -15,129 +15,176 @@
 
     body {
       font-family: '2002', 'Apple SD Gothic Neo', sans-serif;
-      background: #fff;
-      color: #111;
+      background: #1e1f22;
+      color: #bcbec4;
       min-height: 100vh;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* ===== 목록 화면 ===== */
+    /* ===== 목록 화면 — IntelliJ Project Panel ===== */
     #list-view {
-      padding: 80px 40px 120px;
+      min-height: 100vh;
+      background: #1e1f22;
     }
 
-    .list-title {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      color: #bbb;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    .file-item {
+    /* 상단 패널 타이틀바 */
+    .panel-titlebar {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 14px 0;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-    .file-item:hover { opacity: 0.5; }
-
-    .file-item-name {
-      font-size: 15px;
-      font-weight: 400;
-      color: #111;
-    }
-
-    .file-item-path {
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #2b2d30;
+      border-bottom: 1px solid #1a1a1c;
       font-size: 11px;
-      color: #ccc;
+      color: #7a7e85;
       letter-spacing: 0.3px;
+      user-select: none;
+    }
+    .panel-titlebar-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #6aab73;
     }
 
-    .folder-group { margin-bottom: 40px; }
+    /* 파일 트리 */
+    .tree {
+      padding: 4px 0;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 12.5px;
+    }
 
-    .folder-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 1.2px;
-      color: #ccc;
-      text-transform: uppercase;
-      margin-bottom: 4px;
+    .tree-row {
+      display: flex;
+      align-items: center;
+      height: 24px;
+      padding-right: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: background 0.08s;
+    }
+    .tree-row:hover { background: #2b2d30; }
+    .tree-row.selected { background: #2e436e; color: #fff; }
+
+    /* 인덴트 & 가이드라인 */
+    .tree-indent {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .tree-guide {
+      width: 16px;
+      height: 24px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .tree-guide::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0; bottom: 0;
+      border-left: 1px solid #393b40;
+    }
+
+    /* 토글 아이콘 */
+    .tree-toggle {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #6f7074;
+      font-size: 9px;
+    }
+    .tree-toggle.open::before { content: '▾'; }
+    .tree-toggle.closed::before { content: '▸'; }
+    .tree-toggle.leaf { cursor: default; }
+
+    /* 아이콘 */
+    .tree-icon {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+
+    .tree-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tree-label-folder { color: #bcbec4; }
+    .tree-label-file   { color: #bcbec4; }
+    .tree-label-date   { color: #5c6370; font-size: 11px; margin-left: 6px; }
+
+    .tree-children { display: none; }
+    .tree-children.open { display: block; }
+
+    /* 루트 폴더명 */
+    .tree-root-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #bcbec4;
+      letter-spacing: 0.5px;
     }
 
     /* ===== 읽기 화면 ===== */
     #reader-view {
       display: none;
-      padding: 80px 40px 120px;
-    }
-
-    .reader-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #bbb;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      margin-bottom: 52px;
-      transition: color 0.15s;
-    }
-    .reader-back:hover { color: #111; }
-
-    .reader-filename {
-      font-size: 11px;
-      color: #bbb;
-      letter-spacing: 0.8px;
-      margin-bottom: 40px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #ebebeb;
+      padding: 72px 60px 120px;
+      max-width: 860px;
     }
 
     /* ===== 마크다운 ===== */
-    .md-body { font-size: 14px; line-height: 1.9; color: #333; }
-    .md-body h1 { font-size: 22px; font-weight: 700; margin: 28px 0 12px; color: #111; }
-    .md-body h2 { font-size: 18px; font-weight: 600; margin: 24px 0 10px; color: #111; }
-    .md-body h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: #111; }
-    .md-body h4, .md-body h5, .md-body h6 { font-size: 14px; font-weight: 600; margin: 16px 0 6px; color: #111; }
+    .md-body { font-size: 14px; line-height: 1.9; color: #bcbec4; }
+    .md-body h1 { font-size: 22px; font-weight: 700; margin: 28px 0 12px; color: #dfe1e5; }
+    .md-body h2 { font-size: 18px; font-weight: 600; margin: 24px 0 10px; color: #dfe1e5; }
+    .md-body h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: #dfe1e5; }
+    .md-body h4, .md-body h5, .md-body h6 { font-size: 14px; font-weight: 600; margin: 16px 0 6px; color: #dfe1e5; }
     .md-body p { margin-bottom: 12px; }
-    .md-body strong { font-weight: 600; color: #111; }
+    .md-body strong { font-weight: 600; color: #dfe1e5; }
     .md-body em { font-style: italic; }
     .md-body ul, .md-body ol { margin: 8px 0 12px 20px; }
     .md-body li { margin: 4px 0; }
     .md-body blockquote {
-      border-left: 3px solid #e0e0e0;
+      border-left: 3px solid #393b40;
       margin: 16px 0;
       padding: 8px 16px;
-      color: #777;
+      color: #6f7074;
       font-style: italic;
     }
     .md-body code {
-      background: #f5f5f5;
+      background: #2b2d30;
       padding: 2px 6px;
       font-size: 12px;
-      font-family: 'Consolas', monospace;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
       border-radius: 3px;
+      color: #6aab73;
     }
     .md-body pre {
-      background: #f5f5f5;
+      background: #2b2d30;
       padding: 16px;
       overflow-x: auto;
       margin: 12px 0;
       border-radius: 4px;
     }
-    .md-body pre code { background: none; padding: 0; }
-    .md-body hr { border: none; border-top: 1px solid #ebebeb; margin: 24px 0; }
-    .md-body a { color: #555; text-decoration: underline; text-underline-offset: 2px; }
+    .md-body pre code { background: none; padding: 0; color: #bcbec4; }
+    .md-body hr { border: none; border-top: 1px solid #393b40; margin: 24px 0; }
+    .md-body a { color: #6aab73; text-decoration: underline; text-underline-offset: 2px; }
     .md-body table { border-collapse: collapse; width: 100%; margin: 12px 0; }
-    .md-body th, .md-body td { border: 1px solid #e0e0e0; padding: 8px 12px; font-size: 13px; }
-    .md-body th { background: #f7f7f7; font-weight: 500; }
+    .md-body th, .md-body td { border: 1px solid #393b40; padding: 8px 12px; font-size: 13px; }
+    .md-body th { background: #2b2d30; font-weight: 500; color: #dfe1e5; }
+    .md-body input[type="checkbox"] { margin-right: 6px; accent-color: #6aab73; }
 
     @media (max-width: 600px) {
-      #list-view, #reader-view { padding: 48px 24px 80px; }
+      #reader-view { padding: 40px 20px 80px; }
     }
   </style>
 </head>
@@ -145,73 +192,164 @@
 
   <!-- 목록 화면 -->
   <div id="list-view">
-    <div id="file-list"></div>
+    <div class="panel-titlebar">
+      <div class="panel-titlebar-dot"></div>
+      Project
+    </div>
+    <div class="tree" id="file-tree"></div>
   </div>
 
   <!-- 읽기 화면 -->
   <div id="reader-view">
-    <div class="reader-back" id="back-btn">← back</div>
-    <div class="reader-filename" id="reader-filename"></div>
     <div class="md-body" id="reader-body"></div>
   </div>
 
   <script src="blog_files.js"></script>
   <script>
-    const listView       = document.getElementById('list-view');
-    const readerView     = document.getElementById('reader-view');
-    const fileList       = document.getElementById('file-list');
-    const backBtn        = document.getElementById('back-btn');
-    const readerFilename = document.getElementById('reader-filename');
-    const readerBody     = document.getElementById('reader-body');
+    const listView   = document.getElementById('list-view');
+    const readerView = document.getElementById('reader-view');
+    const fileTree   = document.getElementById('file-tree');
+    const readerBody = document.getElementById('reader-body');
 
     function stripFrontmatter(content) {
       return content.replace(/^---[\s\S]*?---\n?/, '').trim();
     }
-
     function stripDataviewjs(content) {
       return content.replace(/```dataviewjs[\s\S]*?```/g, '').trim();
     }
 
-    function openFile(item) {
+    function openFile(item, rowEl) {
+      document.querySelectorAll('.tree-row.selected').forEach(el => el.classList.remove('selected'));
+      rowEl.classList.add('selected');
+
       const raw     = stripFrontmatter(item.content || '');
       const cleaned = stripDataviewjs(raw);
-
-      readerFilename.textContent = item.path;
       readerBody.innerHTML = marked.parse(cleaned);
 
       listView.style.display   = 'none';
       readerView.style.display = 'block';
       window.scrollTo(0, 0);
+      history.pushState({ file: item.path }, '', '');
     }
 
-    backBtn.addEventListener('click', () => {
+    function showList() {
       readerView.style.display = 'none';
       listView.style.display   = 'block';
       window.scrollTo(0, 0);
-    });
+    }
 
-    function collectFiles(items, folderName) {
+    window.addEventListener('popstate', showList);
+
+    function buildTree(items, container, depth) {
       items.forEach(item => {
         if (item.type === 'folder') {
-          collectFiles(item.children, item.name);
+          // 폴더 행
+          const row = document.createElement('div');
+          row.className = 'tree-row';
+
+          const indent = buildIndent(depth);
+          const toggle = document.createElement('div');
+          toggle.className = 'tree-toggle open';
+
+          const icon = document.createElement('div');
+          icon.className = 'tree-icon';
+          icon.textContent = '📂';
+
+          const label = document.createElement('span');
+          label.className = 'tree-label tree-label-folder';
+          label.textContent = item.name;
+
+          row.appendChild(indent);
+          row.appendChild(toggle);
+          row.appendChild(icon);
+          row.appendChild(label);
+
+          // 자식
+          const children = document.createElement('div');
+          children.className = 'tree-children open';
+          buildTree(item.children, children, depth + 1);
+
+          row.addEventListener('click', () => {
+            const isOpen = children.classList.toggle('open');
+            toggle.className = `tree-toggle ${isOpen ? 'open' : 'closed'}`;
+            icon.textContent = isOpen ? '📂' : '📁';
+          });
+
+          container.appendChild(row);
+          container.appendChild(children);
+
         } else {
-          renderFileItem(item, folderName);
+          // 파일 행
+          const row = document.createElement('div');
+          row.className = 'tree-row';
+
+          const indent = buildIndent(depth);
+          const spacer = document.createElement('div');
+          spacer.className = 'tree-toggle leaf';
+
+          const icon = document.createElement('div');
+          icon.className = 'tree-icon';
+          icon.textContent = '📄';
+
+          const label = document.createElement('span');
+          label.className = 'tree-label tree-label-file';
+          label.textContent = item.name;
+
+          const date = document.createElement('span');
+          date.className = 'tree-label-date';
+          date.textContent = item.date || '';
+
+          row.appendChild(indent);
+          row.appendChild(spacer);
+          row.appendChild(icon);
+          row.appendChild(label);
+          row.appendChild(date);
+
+          row.addEventListener('click', () => openFile(item, row));
+          container.appendChild(row);
         }
       });
     }
 
-    function renderFileItem(item, folderName) {
-      const el = document.createElement('div');
-      el.className = 'file-item';
-      el.innerHTML = `
-        <span class="file-item-name">- ${item.name}</span>
-        ${folderName ? `<span class="file-item-path">${folderName}</span>` : ''}
-      `;
-      el.addEventListener('click', () => openFile(item));
-      fileList.appendChild(el);
+    function buildIndent(depth) {
+      const indent = document.createElement('div');
+      indent.className = 'tree-indent';
+      for (let i = 0; i < depth; i++) {
+        const guide = document.createElement('div');
+        guide.className = 'tree-guide';
+        indent.appendChild(guide);
+      }
+      return indent;
     }
 
-    collectFiles(BLOG_FILES, '');
+    // 루트 행
+    const rootRow = document.createElement('div');
+    rootRow.className = 'tree-row';
+    rootRow.style.paddingLeft = '8px';
+    const rootToggle = document.createElement('div');
+    rootToggle.className = 'tree-toggle open';
+    const rootIcon = document.createElement('div');
+    rootIcon.className = 'tree-icon';
+    rootIcon.textContent = '📂';
+    const rootLabel = document.createElement('span');
+    rootLabel.className = 'tree-root-label';
+    rootLabel.textContent = 'blog';
+    rootRow.appendChild(rootToggle);
+    rootRow.appendChild(rootIcon);
+    rootRow.appendChild(rootLabel);
+
+    const rootChildren = document.createElement('div');
+    rootChildren.className = 'tree-children open';
+    buildTree(BLOG_FILES, rootChildren, 1);
+
+    rootRow.addEventListener('click', () => {
+      const isOpen = rootChildren.classList.toggle('open');
+      rootToggle.className = `tree-toggle ${isOpen ? 'open' : 'closed'}`;
+      rootIcon.textContent = isOpen ? '📂' : '📁';
+    });
+
+    fileTree.appendChild(rootRow);
+    fileTree.appendChild(rootChildren);
   </script>
 
 </body>

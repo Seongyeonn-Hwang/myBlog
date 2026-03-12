@@ -26,10 +26,14 @@ function scanDir(dir, relativePath) {
       });
     } else if (entry.name.endsWith('.md')) {
       const content = fs.readFileSync(entryPath, 'utf8');
+      const stat    = fs.statSync(entryPath);
+      const date    = new Date(stat.mtime);
+      const dateStr = `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`;
       items.push({
         type: 'file',
         name: entry.name.replace(/\.md$/, ''),
         path: relPath,
+        date: dateStr,
         content
       });
     }

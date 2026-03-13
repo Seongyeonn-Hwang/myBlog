@@ -1,0 +1,39 @@
+/* 묘사 */
+.callout[data-callout="묘사"] {
+  --callout-color: 90, 141, 238; /* #5a8dee 의 RGB */
+}
+
+/* 루틴 */
+.callout[data-callout="루틴"] {
+  --callout-color: 0, 168, 132;  /* #00a884 */
+}
+
+/* 비교 */
+.callout[data-callout="비교"] {
+  --callout-color: 195, 104, 255; /* #c368ff */
+}
+
+/* 과거경험 */
+.callout[data-callout="과거경험"] {
+  --callout-color: 255, 138, 76;  /* #ff8a4c */
+}
+
+/* 정보요청 */
+.callout[data-callout="정보요청"] {
+  --callout-color: 76, 186, 255;  /* #4cbaff */
+}
+
+/* 대안제시 */
+.callout[data-callout="대안제시"] {
+  --callout-color: 255, 191, 0;   /* #ffbf00 */
+}
+
+/* 질문하기 */
+.callout[data-callout="질문하기"] {
+  --callout-color: 255, 77, 109;  /* #ff4d6d */
+}
+
+/* RP경험 */
+.callout[data-callout="RP경험"] {
+  --callout-color: 140, 198, 63;  /* #8cc63f */
+}

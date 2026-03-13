@@ -1,4 +1,30 @@
 {
+  "showLineNumber": true,
+  "livePreview": false,
+  "alwaysUpdateLinks": true,
+  "autoPairBrackets": false,
+  "autoPairMarkdown": false,
   "promptDelete": false,
-  "livePreview": false
+  "spellcheck": false,
+  "mobileToolbarCommands": [
+    "editor:undo",
+    "editor:redo",
+    "command-palette:open",
+    "editor:insert-embed",
+    "editor:toggle-bold",
+    "editor:toggle-italics",
+    "editor:toggle-strikethrough",
+    "editor:toggle-highlight",
+    "editor:toggle-code",
+    "editor:insert-link",
+    "editor:toggle-bullet-list",
+    "editor:toggle-numbered-list",
+    "editor:toggle-checklist-status",
+    "editor:indent-list",
+    "editor:unindent-list",
+    "editor:configure-toolbar",
+    "global-search:open"
+  ],
+  "openBehavior": "daily",
+  "mobilePullAction": "command-palette:open"
 }

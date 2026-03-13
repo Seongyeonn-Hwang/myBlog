@@ -1,0 +1,11 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "wieght": "number",
+    "wakeup": "text",
+    "start_date": "date",
+    "end_date": "date"
+  }
+}

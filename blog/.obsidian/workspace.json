@@ -1,56 +1,63 @@
 {
   "main": {
-    "id": "5ecc1813e8bf96a4",
+    "id": "5324373015726ba8",
     "type": "split",
     "children": [
       {
-        "id": "ae34971551cf8cdb",
+        "id": "66c017f2947f753f",
         "type": "tabs",
         "children": [
           {
-            "id": "97bb264e21cbb23d",
+            "id": "23bae8090c21b4cc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+                "file": "Diary/점심 산책길.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "정말로 비전공자가 코딩 할 수 있는 세상이 되었다."
-            }
-          },
-          {
-            "id": "8b504c785745523e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "test.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "test"
-            }
+              "title": "점심 산책길"
+            },
+            "group": "2fe8e4a8cf93eb5d"
           }
-        ],
-        "currentTab": 1
+        ]
+      },
+      {
+        "id": "70576b9f1ddda09e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c1050cb783c30ec0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Diary/점심 산책길.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "점심 산책길"
+            },
+            "group": "2fe8e4a8cf93eb5d"
+          }
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "fc427831ad611c7c",
+    "id": "1769cbc51ac7e778",
     "type": "split",
     "children": [
       {
-        "id": "1eb62b80e18ce797",
+        "id": "913f64fd185e7ad2",
         "type": "tabs",
         "children": [
           {
-            "id": "350d7589e39e7b7c",
+            "id": "c0a7ade1bddc6c7b",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -63,12 +70,12 @@
             }
           },
           {
-            "id": "7e43dfc3c90460da",
+            "id": "852f1571eaa18a6b",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "wieght",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -80,7 +87,7 @@
             }
           },
           {
-            "id": "b3141c8c4ecd059a",
+            "id": "8e223b2d4c982369",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -93,23 +100,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 226.5
   },
   "right": {
-    "id": "19f6b1ce6ceaacda",
+    "id": "f84f06e12b00743a",
     "type": "split",
     "children": [
       {
-        "id": "bb1e58e6695c3e81",
+        "id": "4b9b2a6c4ec49df6",
         "type": "tabs",
         "children": [
           {
-            "id": "ff2f9eee3b26c78a",
+            "id": "a34c8713999f5244",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "새 파일.md",
+                "file": "환영합니다!.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,25 +126,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "새 파일 의 백링크"
+              "title": "환영합니다! 의 백링크"
             }
           },
           {
-            "id": "9f3710cbd608be8e",
+            "id": "a9d111fe159d1f6b",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "새 파일.md",
+                "file": "환영합니다!.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "새 파일 의 나가는 링크"
+              "title": "환영합니다! 의 나가는 링크"
             }
           },
           {
-            "id": "2253cbb7eedcc4c8",
+            "id": "c4ac9b0963aa817a",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -152,7 +159,7 @@
             }
           },
           {
-            "id": "f4de41b6a963cdd5",
+            "id": "9bb5fd7dbeb7876b",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -166,65 +173,106 @@
             }
           },
           {
-            "id": "8283080623039ee9",
+            "id": "5420cd355aad95dc",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "새 파일.md",
+                "file": "00.Opic/무적패턴.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "새 파일 의 개요"
+              "title": "무적패턴 의 개요"
+            }
+          },
+          {
+            "id": "b7166af456f47d77",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "설문.md"
+              },
+              "icon": "lucide-info",
+              "title": "설문 의 파일 속성"
+            }
+          },
+          {
+            "id": "9faa72a3ec121d87",
+            "type": "leaf",
+            "state": {
+              "type": "obsidian-code-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Obsidian Code"
             }
           }
-        ]
+        ],
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 710.5
   },
   "left-ribbon": {
     "hiddenItems": {
+      "zk-prefixer:새 고유 노트 생성": false,
       "switcher:빠른 전환기 열기": false,
       "graph:그래프 뷰 열기": false,
       "canvas:새 캔버스 만들기": false,
       "daily-notes:오늘의 일일 노트 열기": false,
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "bases:새 베이스 생성하기": false,
+      "obsidian-kanban:새 보드 만들기": false,
+      "templater-obsidian:Templater": false,
+      "obsidian42-brat:BRAT": false,
+      "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "8b504c785745523e",
+  "active": "23bae8090c21b4cc",
   "lastOpenFiles": [
     "Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
-    "test.md",
-    "999. withoutblog/About.md",
-    "999. withoutblog",
-    "999. withoutblog/aboutimage/IMG_0875.png",
-    "999. withoutblog/aboutimage/6.png",
-    "999. withoutblog/aboutimage",
-    "999. withoutblog/aboutimage/33.jpg",
-    "999. withoutblog/aboutimage/9.jpg",
-    "999. withoutblog/aboutimage/17.png",
-    "999. withoutblog/aboutimage/31.png",
-    "999. withoutblog/aboutimage/30.jpg",
-    "999. withoutblog/aboutimage/29.jpg",
-    "999. withoutblog/aboutimage/28.jpg",
-    "999. withoutblog/aboutimage/IMG_0877.png",
-    "6.jfif",
-    "ㅈㅂ/새 파일.md",
-    "폴더 1/21.md",
-    "폴더 1/ㅅ1.md",
-    "테스트2.md",
-    "ㅂ213ㅈㄷㅂㅈㄷ - 복사본 - 복사본 (2).md",
-    "ㅂ213ㅈㄷㅂㅈㄷ - 복사본 - 복사본.md",
-    "ㅂ213ㅈㄷㅂㅈㄷ - 복사본.md",
-    "ㅂ213ㅈㄷㅂㅈㄷ.md",
-    "ㅂㅈㄷㅂㅈㄷ.md",
-    "ㅈㅂ"
+    "Diary/점심 산책길.md",
+    "03. Resources/Game/01. WOW/WOW 한밤.md",
+    "02. Areas/Daily Notes/26年 03月 13日.md",
+    "03. Resources/Game/01. WOW/한밤_채광.md",
+    "03. Resources/Game/01. WOW/한밤_약초채집.md",
+    "03. Resources/Game/01. WOW/한밤_장비 강화.md",
+    "03. Resources/Game/01. WOW/한밤_무기 강화.md.tmp.41380.1773319615539",
+    "03. Resources/Game/발더스 액체.md",
+    "02. Areas/Daily Notes/26年 03月 12日.md",
+    "02. Areas/Daily Notes/W10/26年 03月 03日.md",
+    "02. Areas/Daily Notes/W11/26年 03月 12日.md",
+    "02. Areas/Daily Notes/W11/26年 03月 14日.md",
+    "02. Areas/Daily Notes/W11/26年 03月 13日.md",
+    "02. Areas/Daily Notes/W11/26年 03月 11日.md",
+    "02. Areas/Daily Notes/W10/26年 03月 04日.md",
+    "02. Areas/Daily Notes/W9/26年 02月 28日.md.tmp.34204.1773238986905",
+    "02. Areas/Daily Notes/W9/26年 02月 24日.md.tmp.34204.1773238985079",
+    "02. Areas/Daily Notes/W9/26年 02月 23日.md.tmp.34204.1773238982973",
+    "02. Areas/Daily Notes/W9/26年 02月 22日.md.tmp.34204.1773238981082",
+    "02. Areas/Daily Notes/W10/26年 03月 01日.md.tmp.34204.1773238976512",
+    "02. Areas/Daily Notes/W10/26年 03月 02日.md.tmp.34204.1773238974812",
+    "02. Areas/Daily Notes/W10/26年 03月 04日.md.tmp.34204.1773238973010",
+    "02. Areas/Daily Notes/W12/26年 03月 16日.md.tmp.34204.1773238968717",
+    "02. Areas/Daily Notes/W11/26年 03月 11日.md.tmp.34204.1773238959585",
+    "02. Areas/Daily Notes/W10/26年 03月 01日.md",
+    "02. Areas/Daily Notes/W10/26年 03月 02日.md",
+    "99. ETC/환영합니다!.md",
+    "02. Areas/Daily Notes/W14/26年 03月 29日.md",
+    "02. Areas/Daily Notes/W14/26年 03月 30日.md",
+    "02. Areas/Daily Notes/W13/26年 03月 28日.md",
+    "02. Areas/Daily Notes/W13/26年 03月 27日.md",
+    "02. Areas/Daily Notes/W13/26年 03月 26日.md",
+    "02. Areas/Daily Notes/W13/26年 03月 25日.md",
+    "02. Areas/Daily Notes/W13/26年 03月 24日.md",
+    "02. Areas/Daily Notes/W13/26年 03月 23日.md",
+    "무제.canvas",
+    "Pasted image 20260303222955.png",
+    "Pasted image 20260302220443.png",
+    "Pasted image 20251227182517.png"
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "dateFormat": "YY년 MM월 DD일",
+  "dateFormat": "YYYY-MM-DD",
   "folder": "",
-  "timeFormat": "HH시 mm분 ss초"
+  "timeFormat": "_HHmmss"
 }

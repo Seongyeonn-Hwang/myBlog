@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01. Diary/무제.md",
+                "file": "-.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "무제"
+              "title": "-"
             }
           }
         ],
@@ -228,7 +228,7 @@
   "active": "264b8f006a7a03fb",
   "lastOpenFiles": [
     "01. Diary/점심 산책길.md",
-    "01. Diary/무제.md",
+    "-.md",
     "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "90. 아쿨맨 키우기/강화 리스트.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md",

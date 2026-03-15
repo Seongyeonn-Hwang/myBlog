@@ -41,16 +41,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Habit Tracker.md",
+                "file": "01. Diary/3월 달력.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "3월 달력"
+            }
+          },
+          {
+            "id": "767bfb8862dfd478",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01. Diary/주말 끝.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Habit Tracker"
+              "title": "주말 끝"
+            }
+          },
+          {
+            "id": "6a9354e85a309530",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "알 고 싶은 것.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "알 고 싶은 것"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -239,14 +267,18 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "34a656abf3c50e04",
+  "active": "6a9354e85a309530",
   "lastOpenFiles": [
-    "Habit Tracker.md.tmp.24292.1773582556879",
-    "01. Diary/3월 달력.md",
-    "01. Diary/3월 달력.md.tmp.42424.1773582217059",
-    "01. Diary/점심 산책길.md",
+    "01. Diary/주말 끝.md",
+    "알 고 싶은 것.md",
     "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+    "01. Diary/점심 산책길.md",
+    "01. Diary/3월 달력.md",
+    "01. Diary/주말 끝.md.tmp.43780.1773584508660",
+    "01. Diary/3월 달력.md.tmp.51088.1773584468011",
     "Habit Tracker.md",
+    "Habit Tracker.md.tmp.24292.1773582556879",
+    "01. Diary/3월 달력.md.tmp.42424.1773582217059",
     "90. 아쿨맨 키우기/강화 리스트.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md.tmp.24292.1773552448290",
@@ -268,15 +300,11 @@
     "03. Resources/Game/01. WOW/한밤_채광.md",
     "03. Resources/Game/01. WOW/한밤_약초채집.md",
     "03. Resources/Game/01. WOW/한밤_장비 강화.md",
-    "03. Resources/Game/01. WOW/한밤_무기 강화.md.tmp.41380.1773319615539",
     "03. Resources/Game/발더스 액체.md",
     "02. Areas/Daily Notes/26年 03月 12日.md",
     "02. Areas/Daily Notes/W10/26年 03月 03日.md",
     "02. Areas/Daily Notes/W11/26年 03月 12日.md",
     "02. Areas/Daily Notes/W11/26年 03月 14日.md",
-    "02. Areas/Daily Notes/W11/26年 03月 13日.md",
-    "02. Areas/Daily Notes/W9/26年 02月 28日.md.tmp.34204.1773238986905",
-    "02. Areas/Daily Notes/W9/26年 02月 24日.md.tmp.34204.1773238985079",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "66c017f2947f753f",
+        "id": "70576b9f1ddda09e",
         "type": "tabs",
         "children": [
           {
-            "id": "23bae8090c21b4cc",
+            "id": "c1050cb783c30ec0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,42 +19,24 @@
               },
               "icon": "lucide-file",
               "title": "점심 산책길"
-            },
-            "group": "2fe8e4a8cf93eb5d"
+            }
           },
           {
-            "id": "36884894619077e6",
+            "id": "264b8f006a7a03fb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "90. 아쿨맨 키우기/강화 리스트.md",
-                "mode": "preview",
+                "file": "01. Diary/무제.md",
+                "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "강화 리스트"
+              "title": "무제"
             }
           }
         ],
         "currentTab": 1
-      },
-      {
-        "id": "70576b9f1ddda09e",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "c1050cb783c30ec0",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "새 탭"
-            },
-            "group": "2fe8e4a8cf93eb5d"
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -243,8 +225,12 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "36884894619077e6",
+  "active": "264b8f006a7a03fb",
   "lastOpenFiles": [
+    "01. Diary/점심 산책길.md",
+    "01. Diary/무제.md",
+    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+    "90. 아쿨맨 키우기/강화 리스트.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md.tmp.24292.1773552448290",
     "90. 아쿨맨 키우기/한밤 전문기술 - 주문각인.md",
@@ -256,9 +242,6 @@
     "90. 아쿨맨 키우기/한밤 전문기술 - 채광.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 채광.md.tmp.24292.1773552355129",
     "90. 아쿨맨 키우기/한밤 전문기술 - 약초채집.md",
-    "90. 아쿨맨 키우기/강화 리스트.md",
-    "01. Diary/점심 산책길.md",
-    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "90. 아쿨맨 키우기",
     "Diary/무제.md",
     "Diary/와우 아이템 툴팁 테스트.md",
@@ -280,7 +263,6 @@
     "02. Areas/Daily Notes/W9/26年 02月 28日.md.tmp.34204.1773238986905",
     "02. Areas/Daily Notes/W9/26年 02月 24日.md.tmp.34204.1773238985079",
     "02. Areas/Daily Notes/W9/26年 02月 23日.md.tmp.34204.1773238982973",
-    "02. Areas/Daily Notes/W10/26年 03月 01日.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

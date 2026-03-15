@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog — Seongyeon Hwang</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Wowhead 아이템 툴팁 -->
-  <script>const whTooltips = {colorLinks: true, iconizeLinks: true, iconSize: 'small', renameLinks: false, hide: {droptargets: true}};</script>
-  <script src="https://wow.zamimg.com/widgets/power.js"></script>
-  <style>
+<style>
     @font-face {
       font-family: 'NotoSansKR';
       src: url('font/NotoSansKR-Regular.ttf') format('truetype');
@@ -126,21 +123,7 @@
     .md-body th { background: #2b2b2b; font-weight: 500; color: #dfe1e5; }
     .md-body input[type="checkbox"] { margin-right: 6px; accent-color: #98c379; }
 
-    /* ===== WoW 아이템 품질 색상 ===== */
-    .wow-item { border-bottom: 1px dotted; transition: opacity 0.15s; }
-    .wow-item:hover { opacity: 0.75; }
-    .wow-item img { width: 16px; height: 16px; vertical-align: middle; margin-right: 3px; border-radius: 2px; }
-    /* 품질별 색상 (Wowhead 표준) */
-    .wow-q0 { color: #9d9d9d; border-color: #9d9d9d; } /* 형편없는 */
-    .wow-q1 { color: #ffffff; border-color: #ffffff; } /* 일반 */
-    .wow-q2 { color: #1eff00; border-color: #1eff00; } /* 고급 */
-    .wow-q3 { color: #0070dd; border-color: #0070dd; } /* 희귀 */
-    .wow-q4 { color: #a335ee; border-color: #a335ee; } /* 영웅 */
-    .wow-q5 { color: #ff8000; border-color: #ff8000; } /* 전설 */
-    .wow-q6 { color: #e6cc80; border-color: #e6cc80; } /* 유물 */
-    .wow-q7 { color: #00ccff; border-color: #00ccff; } /* 축복받은 */
-
-    /* ===== Obsidian 특수 문법 ===== */
+/* ===== Obsidian 특수 문법 ===== */
     .wiki-link {
       color: #6aab73;
       cursor: pointer;
@@ -254,13 +237,6 @@
 
     // Obsidian 문법 전처리
     function obsidianPreprocess(text) {
-      // [wow:아이템ID|아이템이름] 또는 [wow:아이템ID|아이템이름|q품질]
-      // 예시: [wow:19019|천둥분노] 또는 [wow:19019|천둥분노|q5]
-      text = text.replace(/\[wow:(\d+)\|([^\]|]+)(?:\|(q\d))?\]/g, (_, id, name, quality) => {
-        const qClass = quality ? `wow-item ${quality}` : 'wow-item wow-q3';
-        return `<a href="https://www.wowhead.com/item=${id}" class="${qClass}" data-wowhead="item=${id}">${name}</a>`;
-      });
-
       // ![[임베드]] — 무시
       text = text.replace(/!\[\[([^\]]+)\]\]/g, '');
 
@@ -317,10 +293,6 @@
       window.scrollTo(0, 0);
       history.pushState({ file: item.path }, '', '');
 
-      // Wowhead 툴팁 재초기화 (동적 렌더링 후)
-      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
-        window.$WowheadPower.refreshLinks();
-      }
     }
 
     function showList() {

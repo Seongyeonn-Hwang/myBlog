@@ -39,7 +39,15 @@
       "Bash(node -e \"\nconst fs = require\\('fs'\\);\nconst buf = fs.readFileSync\\('C:/Users/murde/Desktop/myBlog/blog/90. 아쿨맨 키우기/강화 리스트.md'\\);\nconsole.log\\('BOM?', buf[0].toString\\(16\\), buf[1].toString\\(16\\), buf[2].toString\\(16\\)\\);\nconsole.log\\('CRLF?', buf.includes\\(0x0d\\)\\);\n\")",
       "Bash(node -e \"\nconst fs = require\\('fs'\\);\nconst content = fs.readFileSync\\('C:/Users/murde/Desktop/myBlog/blog/90. 아쿨맨 키우기/강화 리스트.md', 'utf-8'\\);\nconst idx = content.indexOf\\('[!['\\);\nconst fullLink = content.substring\\(idx, idx + 370\\);\nconsole.log\\('FROM FILE:', JSON.stringify\\(fullLink\\)\\);\nconsole.log\\('---'\\);\nconst literal = '[![무기 마법부여 - 비전 숙련]\\(https://wow.zamimg.com/images/wow/icons/tiny/inv_12_profession_enchanting_enchantedvellum_purple.gif\\) 무기 마법부여 - 비전 숙련 ![]\\(https://wow.zamimg.com/images/wow/TextureAtlas/live/professions-chaticon-quality-tier2.png\\)]\\(https://www.wowhead.com/ko/item=244031/%EB%AC%B4%EA%B8%B0-%EB%A7%88%EB%B2%95%EB%B6%80%EC%97%AC-%EB%B9%84%EC%A0%84-%EC%88%99%EB%A0%A8\\)';\nconsole.log\\('LITERAL:', JSON.stringify\\(literal\\)\\);\nconsole.log\\('same?', fullLink.startsWith\\(literal\\)\\);\n\")",
       "Bash(node -e \"\nconst fs = require\\('fs'\\);\nconst content = fs.readFileSync\\('C:/Users/murde/Desktop/myBlog/blog/90. 아쿨맨 키우기/강화 리스트.md', 'utf-8'\\);\nconst idx = content.indexOf\\('[!['\\);\n\n// 파일에서 읽은 첫 번째 링크 직접 패턴 적용\nconst endOfLink = content.indexOf\\('\\)', content.indexOf\\(']\\(https://www.wowhead.com', idx\\)\\) + 1;\nconst singleLink = content.substring\\(idx, endOfLink\\);\nconsole.log\\('link length:', singleLink.length\\);\n\n// 각 부분을 단계별로 찾기\nconsole.log\\('has [![:', singleLink.startsWith\\('[!['\\)\\);\nconst iconEnd = singleLink.indexOf\\('\\) '\\);\nconsole.log\\('icon part end at:', iconEnd\\);\nconst afterIcon = singleLink.substring\\(iconEnd + 2\\);\nconsole.log\\('after icon:', JSON.stringify\\(afterIcon.substring\\(0, 80\\)\\)\\);\n\n// 아이템 이름과 ![]\\(quality\\) 찾기\nconst qualityStart = afterIcon.indexOf\\('![]\\('\\);\nconsole.log\\('quality start:', qualityStart\\);\nconst itemName = afterIcon.substring\\(0, qualityStart\\).trim\\(\\);\nconsole.log\\('item name:', itemName\\);\n\")",
-      "WebFetch(domain:www.wowhead.com)"
+      "WebFetch(domain:www.wowhead.com)",
+      "WebFetch(domain:www.wowdb.com)",
+      "WebFetch(domain:www.icy-veins.com)",
+      "WebFetch(domain:www.wow-professions.com)",
+      "WebFetch(domain:wowpedia.fandom.com)",
+      "WebFetch(domain:wowhead.com)",
+      "Bash(ls \"C:\\\\Users\\\\murde\\\\Desktop\\\\myBlog\\\\blog\\\\Diary\\\\\" && ls \"C:\\\\Users\\\\murde\\\\Desktop\\\\myBlog\\\\blog\\\\90. 아쿨맨 키우기\\\\\")",
+      "Bash(git checkout:*)",
+      "Bash(git restore:*)"
     ]
   }
 }

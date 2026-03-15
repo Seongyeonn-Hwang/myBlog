@@ -47,7 +47,12 @@
       "WebFetch(domain:wowhead.com)",
       "Bash(ls \"C:\\\\Users\\\\murde\\\\Desktop\\\\myBlog\\\\blog\\\\Diary\\\\\" && ls \"C:\\\\Users\\\\murde\\\\Desktop\\\\myBlog\\\\blog\\\\90. 아쿨맨 키우기\\\\\")",
       "Bash(git checkout:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:github-production-user-asset-6210df.s3.amazonaws.com)"
     ]
   }
 }

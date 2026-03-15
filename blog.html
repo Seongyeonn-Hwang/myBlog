@@ -123,7 +123,51 @@
     .md-body th { background: #2b2b2b; font-weight: 500; color: #dfe1e5; }
     .md-body input[type="checkbox"] { margin-right: 6px; accent-color: #98c379; }
 
-/* ===== Obsidian 특수 문법 ===== */
+/* ===== Habit Tracker ===== */
+    .habit-tracker-page { display: flex; flex-direction: column; gap: 14px; }
+    .habit-card {
+      background: #0f0f0f;
+      border-radius: 16px;
+      padding: 22px 24px 18px;
+      font-family: 'Courier New', Consolas, monospace;
+    }
+    .habit-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .habit-name { color: #e2e2e2; font-size: 17px; font-weight: normal; }
+    .habit-year { color: #505050; font-size: 15px; }
+    .habit-grid {
+      display: grid;
+      grid-template-rows: repeat(7, 5px);
+      grid-auto-columns: 5px;
+      grid-auto-flow: column;
+      gap: 3px;
+    }
+    .habit-dot {
+      width: 5px; height: 5px;
+      border-radius: 1px;
+      background: #242424;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .habit-dot:hover { background: #404040; }
+    .habit-dot.filled { background: #4a8c5c; }
+    .habit-dot.is-today { background: #3a6ec0; }
+    .habit-dot.is-today.filled { background: #4a8c5c; }
+    .habit-dot.future, .habit-dot.off-year { background: #161616; cursor: default; }
+    .habit-dot.future:hover, .habit-dot.off-year:hover { background: #161616; }
+    .habit-card-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px;
+    }
+    .habit-streak { color: #b0b0b0; font-size: 13px; }
+    .habit-tag { color: #383838; font-size: 12px; }
+
+    /* ===== Obsidian 특수 문법 ===== */
     .wiki-link {
       color: #6aab73;
       cursor: pointer;
@@ -279,6 +323,72 @@
       el.classList.add('selected');
 
       readerBody.innerHTML = renderContent(item.content);
+
+      // Habit Tracker 특별 렌더링
+      if (item.name === 'Habit Tracker') {
+        // raw 마크다운에서 ## 섹션별로 습관 파싱
+        const habits = [];
+        const sections = item.content.split(/^##\s+/m).slice(1);
+        sections.forEach(sec => {
+          const lines = sec.trim().split('\n');
+          const name = lines[0].trim();
+          const dateText = lines.slice(1).join(' ');
+          const dates = new Set((dateText.match(/\d{4}-\d{2}-\d{2}/g) || []));
+          habits.push({ name, dates });
+        });
+
+        const year = new Date().getFullYear();
+        const today = new Date(); today.setHours(0,0,0,0);
+
+        function ds(d) {
+          return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        }
+        function calcStreak(dates) {
+          let n = 0, d = new Date(today);
+          while (dates.has(ds(d))) { n++; d.setDate(d.getDate()-1); }
+          return n;
+        }
+
+        // 그리드 범위: 1월 1일 속한 주 일요일 ~ 12월 31일 속한 주 토요일
+        const gridStart = new Date(year, 0, 1);
+        gridStart.setDate(gridStart.getDate() - gridStart.getDay());
+        const gridEnd = new Date(year, 11, 31);
+        gridEnd.setDate(gridEnd.getDate() + (6 - gridEnd.getDay()));
+
+        let html = '<div class="habit-tracker-page">';
+        habits.forEach(({ name, dates }) => {
+          let dots = '';
+          const d = new Date(gridStart);
+          while (d <= gridEnd) {
+            const dateStr = ds(d);
+            const inYear  = d.getFullYear() === year;
+            const isToday = d.getTime() === today.getTime();
+            const isFuture = d > today;
+            const done    = dates.has(dateStr);
+            let cls = 'habit-dot';
+            if (!inYear)        cls += ' off-year';
+            else if (isFuture)  cls += ' future';
+            else if (done)      cls += ' filled';
+            if (isToday)        cls += ' is-today';
+            dots += `<div class="${cls}"></div>`;
+            d.setDate(d.getDate() + 1);
+          }
+          const s = calcStreak(dates);
+          html += `<div class="habit-card">
+            <div class="habit-card-header">
+              <span class="habit-name">${name}</span>
+              <span class="habit-year">${year}</span>
+            </div>
+            <div class="habit-grid">${dots}</div>
+            <div class="habit-card-footer">
+              <span class="habit-streak">${s > 0 ? s+' day streak' : 'no streak yet'}</span>
+              <span class="habit-tag">Habit Tracker</span>
+            </div>
+          </div>`;
+        });
+        html += '</div>';
+        readerBody.innerHTML = html;
+      }
 
       // wiki-link 클릭 이벤트
       readerBody.querySelectorAll('.wiki-link').forEach(link => {

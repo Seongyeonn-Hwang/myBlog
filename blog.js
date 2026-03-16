@@ -4,6 +4,11 @@ const backdrop = document.getElementById('modal-backdrop');
 const modalDate = document.getElementById('modal-date');
 const modalBody = document.getElementById('modal-body');
 
+// ===== 프론트매터 제거 =====
+function stripFrontmatter(md) {
+  return md.replace(/^---[\s\S]*?---\n?/, '');
+}
+
 // ===== 마크다운 → HTML (라이브러리 없이 간단 변환) =====
 function mdToHtml(md) {
   return md
@@ -43,7 +48,7 @@ function renderPosts(filter) {
   countEl.textContent = `${filtered.length} posts`;
 
   filtered.forEach(post => {
-    const excerpt = post.content.slice(0, 80).replace(/#+\s/g, '').replace(/\n/g, ' ').trim();
+    const excerpt = stripFrontmatter(post.content).slice(0, 80).replace(/#+\s/g, '').replace(/\n/g, ' ').trim();
 
     const card = document.createElement('div');
     card.className = 'post-card';
@@ -64,7 +69,7 @@ function renderPosts(filter) {
 // ===== 모달 열기 =====
 function openPost(post) {
   modalDate.textContent = post.display;
-  modalBody.innerHTML   = '<p>' + mdToHtml(post.content) + '</p>';
+  modalBody.innerHTML   = '<p>' + mdToHtml(stripFrontmatter(post.content)) + '</p>';
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
 }

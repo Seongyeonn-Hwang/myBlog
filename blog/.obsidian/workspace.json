@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "나의 하루 03-16.md",
+                "file": "알 고 싶은 것.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "나의 하루 03-16"
+              "title": "알 고 싶은 것"
+            }
+          },
+          {
+            "id": "7c1b04d4c1cd415e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "90. Study/Phase 1 - 초급/1. 수학 기초.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "1. 수학 기초"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -210,13 +225,28 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "a58df38e6fc93a0c",
+  "active": "7c1b04d4c1cd415e",
   "lastOpenFiles": [
-    "이전 하루",
-    "나의 하루.md.tmp.14580.1773669553383",
-    "01. Diary/점심 산책길.md",
+    "나의 하루.md",
     "01. Diary/주말 끝.md",
-    "나의 하루 03-16.md",
+    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+    "01. Diary/점심 산책길.md",
+    "90. Study/AI 학습 로드맵.md",
+    "90. Study/Phase 1 - 초급/1. 수학 기초.md",
+    "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
+    "90. Study/Phase 1 - 초급/3. ML 기초 개념.md",
+    "MCP.md",
+    "90. Study/Phase 1 - 초급/3. ML 기초 개념.md.tmp.18752.1773670879170",
+    "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md.tmp.18752.1773670846863",
+    "90. Study/Phase 1 - 초급/1. 수학 기초.md.tmp.18752.1773670816361",
+    "90. Study/자료모음",
+    "90. Study/프로젝트",
+    "90. Study/Phase 4 - 전문가",
+    "90. Study/Phase 3 - 고급",
+    "90. Study/Phase 2 - 중급",
+    "90. Study/Phase 1 - 초급",
+    "90. Study/AI 학습 로드맵.md.tmp.18752.1773670782435",
+    "알 고 싶은 것.md",
     "Habit Tracker.md",
     "01. Diary/3월 달력.md",
     "999. withoutblog/aboutimage/18.png",
@@ -224,23 +254,12 @@
     "999. withoutblog/aboutimage/14.png",
     "999. withoutblog/aboutimage/9.jpg",
     "999. withoutblog/aboutimage/6.png",
-    "알 고 싶은 것.md",
-    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
-    "01. Diary/주말 끝.md.tmp.43780.1773584508660",
-    "01. Diary/3월 달력.md.tmp.51088.1773584468011",
-    "Habit Tracker.md.tmp.24292.1773582556879",
-    "01. Diary/3월 달력.md.tmp.42424.1773582217059",
     "90. 아쿨맨 키우기/강화 리스트.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md",
-    "90. 아쿨맨 키우기/한밤 전문기술 - 보석세공.md.tmp.24292.1773552448290",
     "90. 아쿨맨 키우기/한밤 전문기술 - 주문각인.md",
-    "90. 아쿨맨 키우기/한밤 전문기술 - 주문각인.md.tmp.24292.1773552426270",
     "90. 아쿨맨 키우기/한밤 전문기술 - 마법부여.md",
-    "90. 아쿨맨 키우기/한밤 전문기술 - 마법부여.md.tmp.24292.1773552395774",
     "90. 아쿨맨 키우기/한밤 전문기술 - 연금술.md",
-    "90. 아쿨맨 키우기/한밤 전문기술 - 연금술.md.tmp.24292.1773552375009",
     "90. 아쿨맨 키우기/한밤 전문기술 - 채광.md",
-    "90. 아쿨맨 키우기/한밤 전문기술 - 채광.md.tmp.24292.1773552355129",
     "90. 아쿨맨 키우기/한밤 전문기술 - 약초채집.md",
     "Diary/무제.md",
     "Diary/와우 아이템 툴팁 테스트.md",
@@ -249,10 +268,6 @@
     "02. Areas/Daily Notes/26年 03月 13日.md",
     "03. Resources/Game/01. WOW/한밤_채광.md",
     "03. Resources/Game/01. WOW/한밤_약초채집.md",
-    "03. Resources/Game/01. WOW/한밤_장비 강화.md",
-    "03. Resources/Game/발더스 액체.md",
-    "02. Areas/Daily Notes/26年 03月 12日.md",
-    "02. Areas/Daily Notes/W10/26年 03月 03日.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

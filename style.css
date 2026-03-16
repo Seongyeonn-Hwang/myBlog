@@ -55,6 +55,39 @@ body {
   background: #f0f0f0;
 }
 
+/* ===== 모바일 반응형 ===== */
+@media (max-width: 620px) {
+  .name {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    padding: 32px 16px;
+  }
+
+  .indices {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .index-sep {
+    display: none;
+  }
+
+  .nav {
+    font-size: 14px;
+    gap: 6px;
+  }
+}
+
 .avatar img {
   width: 100%;
   height: 100%;

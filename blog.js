@@ -11,7 +11,21 @@ function stripFrontmatter(md) {
 
 // ===== 마크다운 → HTML (라이브러리 없이 간단 변환) =====
 function mdToHtml(md) {
-  return md
+  // 표를 먼저 추출해 플레이스홀더로 치환 (이스케이프 방지)
+  const tables = [];
+  md = md.replace(/^(\|.+\|[ \t]*\n)([ \t]*\|[-| :]+\|[ \t]*\n)((?:[ \t]*\|.+\|[ \t]*\n?)*)/gm,
+    (_, header, _sep, body) => {
+      const toRow = (line, tag) =>
+        '<tr>' + line.trim().replace(/^\||\|$/g, '').split('|')
+          .map(c => `<${tag} class="md-td">${c.trim()}</${tag}>`).join('') + '</tr>';
+      const html = `<table class="md-table"><thead>${toRow(header, 'th')}</thead><tbody>${
+        body.trim().split('\n').filter(Boolean).map(l => toRow(l, 'td')).join('')
+      }</tbody></table>`;
+      tables.push(html);
+      return `\x00TABLE${tables.length - 1}\x00`;
+    });
+
+  let result = md
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     // 헤딩
     .replace(/^#{6}\s(.+)$/gm, '<h6>$1</h6>')
@@ -35,6 +49,10 @@ function mdToHtml(md) {
     .replace(/\n{2,}/g, '</p><p>')
     .replace(/\n/g, '<br/>')
     .replace(/^(.+)$/, '<p>$1</p>');
+
+  // 플레이스홀더 → 표 HTML 복원
+  tables.forEach((html, i) => { result = result.replace(`\x00TABLE${i}\x00`, html); });
+  return result;
 }
 
 // ===== 렌더링 =====

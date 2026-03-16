@@ -4,95 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "70576b9f1ddda09e",
+        "id": "c1a3e585e14ce296",
         "type": "tabs",
         "children": [
           {
-            "id": "c1050cb783c30ec0",
+            "id": "a58df38e6fc93a0c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01. Diary/점심 산책길.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "점심 산책길"
-            }
-          },
-          {
-            "id": "264b8f006a7a03fb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "01. Diary/점심 산책길.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "점심 산책길"
-            }
-          },
-          {
-            "id": "34a656abf3c50e04",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "01. Diary/3월 달력.md",
+                "file": "나의 하루 03-16.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "3월 달력"
-            }
-          },
-          {
-            "id": "767bfb8862dfd478",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "01. Diary/주말 끝.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "주말 끝"
-            }
-          },
-          {
-            "id": "6a9354e85a309530",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "01. Diary/점심 산책길.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "점심 산책길"
-            }
-          },
-          {
-            "id": "2da5c3a9ff166be3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "하루 일정표.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "하루 일정표"
+              "title": "나의 하루 03-16"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -281,11 +210,14 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "2da5c3a9ff166be3",
+  "active": "a58df38e6fc93a0c",
   "lastOpenFiles": [
-    "Habit Tracker.md",
-    "하루 일정표.md",
+    "이전 하루",
+    "나의 하루.md.tmp.14580.1773669553383",
     "01. Diary/점심 산책길.md",
+    "01. Diary/주말 끝.md",
+    "나의 하루 03-16.md",
+    "Habit Tracker.md",
     "01. Diary/3월 달력.md",
     "999. withoutblog/aboutimage/18.png",
     "999. withoutblog/aboutimage/15.png",
@@ -293,7 +225,6 @@
     "999. withoutblog/aboutimage/9.jpg",
     "999. withoutblog/aboutimage/6.png",
     "알 고 싶은 것.md",
-    "01. Diary/주말 끝.md",
     "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "01. Diary/주말 끝.md.tmp.43780.1773584508660",
     "01. Diary/3월 달력.md.tmp.51088.1773584468011",
@@ -311,7 +242,6 @@
     "90. 아쿨맨 키우기/한밤 전문기술 - 채광.md",
     "90. 아쿨맨 키우기/한밤 전문기술 - 채광.md.tmp.24292.1773552355129",
     "90. 아쿨맨 키우기/한밤 전문기술 - 약초채집.md",
-    "90. 아쿨맨 키우기",
     "Diary/무제.md",
     "Diary/와우 아이템 툴팁 테스트.md",
     "Diary/와우 아이템 예시.md",
@@ -323,7 +253,6 @@
     "03. Resources/Game/발더스 액체.md",
     "02. Areas/Daily Notes/26年 03月 12日.md",
     "02. Areas/Daily Notes/W10/26年 03月 03日.md",
-    "02. Areas/Daily Notes/W11/26年 03月 12日.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

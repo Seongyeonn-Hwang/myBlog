@@ -69,16 +69,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "알 고 싶은 것.md",
+                "file": "01. Diary/점심 산책길.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "알 고 싶은 것"
+              "title": "점심 산책길"
+            }
+          },
+          {
+            "id": "2da5c3a9ff166be3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "하루 일정표.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "하루 일정표"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -267,16 +281,22 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "6a9354e85a309530",
+  "active": "2da5c3a9ff166be3",
   "lastOpenFiles": [
-    "01. Diary/주말 끝.md",
-    "알 고 싶은 것.md",
-    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+    "Habit Tracker.md",
+    "하루 일정표.md",
     "01. Diary/점심 산책길.md",
     "01. Diary/3월 달력.md",
+    "999. withoutblog/aboutimage/18.png",
+    "999. withoutblog/aboutimage/15.png",
+    "999. withoutblog/aboutimage/14.png",
+    "999. withoutblog/aboutimage/9.jpg",
+    "999. withoutblog/aboutimage/6.png",
+    "알 고 싶은 것.md",
+    "01. Diary/주말 끝.md",
+    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "01. Diary/주말 끝.md.tmp.43780.1773584508660",
     "01. Diary/3월 달력.md.tmp.51088.1773584468011",
-    "Habit Tracker.md",
     "Habit Tracker.md.tmp.24292.1773582556879",
     "01. Diary/3월 달력.md.tmp.42424.1773582217059",
     "90. 아쿨맨 키우기/강화 리스트.md",
@@ -304,7 +324,6 @@
     "02. Areas/Daily Notes/26年 03月 12日.md",
     "02. Areas/Daily Notes/W10/26年 03月 03日.md",
     "02. Areas/Daily Notes/W11/26年 03月 12日.md",
-    "02. Areas/Daily Notes/W11/26年 03月 14日.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

@@ -9,10 +9,10 @@ function stripFrontmatter(md) {
   return md.replace(/^---[\s\S]*?---\n?/, '');
 }
 
-// ===== 보안 마커 처리: (!보안)내용(보안!) → ■■■ =====
+// ===== 보안 마커 처리: (!보안)내용(보안!) → 공백 유지하며 ■로 치환 =====
 function hideSensitiveContent(md) {
   return md.replace(/\(!보안\)([\s\S]*?)\(보안!\)/g, (_, content) =>
-    content.replace(/[^\n]/g, '■')
+    content.replace(/[^ \n]/g, '■')
   );
 }
 

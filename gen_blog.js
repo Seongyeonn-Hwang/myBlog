@@ -32,7 +32,7 @@ function scanDir(dir, relativePath) {
       });
     } else if (entry.name.endsWith('.md')) {
       const raw     = fs.readFileSync(entryPath, 'utf8');
-      const content = raw.replace(/\(!보안\)[\s\S]*?\(보안!\)/g, '■■■');
+      const content = raw.replace(/\(!보안\)([\s\S]*?)\(보안!\)/g, (_, t) => t.replace(/[^ \n]/g, '■'));
       const stat    = fs.statSync(entryPath);
       const date    = new Date(stat.mtime);
       const dateStr = `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`;

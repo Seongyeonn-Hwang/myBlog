@@ -287,7 +287,7 @@
 
     function stripFrontmatter(c) { return c.replace(/^---[\s\S]*?---\n?/, '').trim(); }
     function stripDataviewjs(c)  { return c.replace(/```dataviewjs[\s\S]*?```/g, '').trim(); }
-    function hideSensitiveContent(c) { return c.replace(/\(!보안\)([\s\S]*?)\(보안!\)/g, (_, t) => t.replace(/[^\n]/g, '■')); }
+    function hideSensitiveContent(c) { return c.replace(/\(!보안\)([\s\S]*?)\(보안!\)/g, (_, t) => t.replace(/[^ \n]/g, '■')); }
 
     // 파일 이름 → item 매핑 (wiki link 연결용)
     const fileMap = {};

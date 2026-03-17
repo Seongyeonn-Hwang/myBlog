@@ -9,6 +9,13 @@ function stripFrontmatter(md) {
   return md.replace(/^---[\s\S]*?---\n?/, '');
 }
 
+// ===== 보안 마커 처리: (!보안)내용(보안!) → ■■■ =====
+function hideSensitiveContent(md) {
+  return md.replace(/\(!보안\)([\s\S]*?)\(보안!\)/g, (_, content) =>
+    content.replace(/[^\n]/g, '■')
+  );
+}
+
 // ===== 마크다운 → HTML (라이브러리 없이 간단 변환) =====
 function mdToHtml(md) {
   // 표를 먼저 추출해 플레이스홀더로 치환 (이스케이프 방지)
@@ -66,7 +73,7 @@ function renderPosts(filter) {
   countEl.textContent = `${filtered.length} posts`;
 
   filtered.forEach(post => {
-    const excerpt = stripFrontmatter(post.content).slice(0, 80).replace(/#+\s/g, '').replace(/\n/g, ' ').trim();
+    const excerpt = hideSensitiveContent(stripFrontmatter(post.content)).slice(0, 80).replace(/#+\s/g, '').replace(/\n/g, ' ').trim();
 
     const card = document.createElement('div');
     card.className = 'post-card';
@@ -87,7 +94,7 @@ function renderPosts(filter) {
 // ===== 모달 열기 =====
 function openPost(post) {
   modalDate.textContent = post.display;
-  modalBody.innerHTML   = '<p>' + mdToHtml(stripFrontmatter(post.content)) + '</p>';
+  modalBody.innerHTML   = '<p>' + mdToHtml(hideSensitiveContent(stripFrontmatter(post.content))) + '</p>';
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
 }

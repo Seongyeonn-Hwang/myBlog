@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "90. Study/자료모음/MCP.md",
-                "mode": "preview",
+                "file": "나의 하루.md",
+                "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "MCP"
+              "title": "나의 하루"
             }
           }
         ],
@@ -241,9 +241,11 @@
   },
   "active": "8dc2e2883287e13a",
   "lastOpenFiles": [
-    "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
+    "온프레미스 (On-Premises).md",
     "90. Study/Phase 1 - 초급/1. 수학 기초.md",
+    "온프레미스 (On-Premises).md.tmp.34344.1773747519391",
     "90. Study/자료모음/MCP.md",
+    "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
     "나의 하루.md",
     "알 고 싶은 것.md",
     "Habit Tracker.md",
@@ -263,7 +265,6 @@
     "90. Study/Phase 3 - 고급",
     "90. Study/Phase 2 - 중급",
     "90. Study/Phase 1 - 초급",
-    "90. Study/AI 학습 로드맵.md.tmp.18752.1773670782435",
     "01. Diary/3월 달력.md",
     "999. withoutblog/aboutimage/18.png",
     "999. withoutblog/aboutimage/15.png",
@@ -281,7 +282,6 @@
     "Diary/와우 아이템 툴팁 테스트.md",
     "Diary/와우 아이템 예시.md",
     "03. Resources/Game/01. WOW/WOW 한밤.md",
-    "02. Areas/Daily Notes/26年 03月 13日.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

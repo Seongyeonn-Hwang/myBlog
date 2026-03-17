@@ -31,7 +31,8 @@ function scanDir(dir, relativePath) {
         children: scanDir(entryPath, relPath)
       });
     } else if (entry.name.endsWith('.md')) {
-      const content = fs.readFileSync(entryPath, 'utf8');
+      const raw     = fs.readFileSync(entryPath, 'utf8');
+      const content = raw.replace(/\(!보안\)[\s\S]*?\(보안!\)/g, '■■■');
       const stat    = fs.statSync(entryPath);
       const date    = new Date(stat.mtime);
       const dateStr = `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`;

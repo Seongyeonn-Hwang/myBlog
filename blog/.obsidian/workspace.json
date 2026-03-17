@@ -34,9 +34,23 @@
               "icon": "lucide-file",
               "title": "나의 하루"
             }
+          },
+          {
+            "id": "8dc2e2883287e13a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "90. Study/자료모음/MCP.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "MCP"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -225,18 +239,21 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "7c1b04d4c1cd415e",
+  "active": "8dc2e2883287e13a",
   "lastOpenFiles": [
-    "알 고 싶은 것.md",
+    "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
     "90. Study/Phase 1 - 초급/1. 수학 기초.md",
+    "90. Study/자료모음/MCP.md",
     "나의 하루.md",
+    "알 고 싶은 것.md",
+    "Habit Tracker.md",
+    "999. withoutblog/Template.md",
+    "999. withoutblog/About.md",
     "01. Diary/주말 끝.md",
     "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "01. Diary/점심 산책길.md",
     "90. Study/AI 학습 로드맵.md",
-    "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
     "90. Study/Phase 1 - 초급/3. ML 기초 개념.md",
-    "MCP.md",
     "90. Study/Phase 1 - 초급/3. ML 기초 개념.md.tmp.18752.1773670879170",
     "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md.tmp.18752.1773670846863",
     "90. Study/Phase 1 - 초급/1. 수학 기초.md.tmp.18752.1773670816361",
@@ -247,7 +264,6 @@
     "90. Study/Phase 2 - 중급",
     "90. Study/Phase 1 - 초급",
     "90. Study/AI 학습 로드맵.md.tmp.18752.1773670782435",
-    "Habit Tracker.md",
     "01. Diary/3월 달력.md",
     "999. withoutblog/aboutimage/18.png",
     "999. withoutblog/aboutimage/15.png",
@@ -266,8 +282,6 @@
     "Diary/와우 아이템 예시.md",
     "03. Resources/Game/01. WOW/WOW 한밤.md",
     "02. Areas/Daily Notes/26年 03月 13日.md",
-    "03. Resources/Game/01. WOW/한밤_채광.md",
-    "03. Resources/Game/01. WOW/한밤_약초채집.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

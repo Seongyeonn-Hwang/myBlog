@@ -24,50 +24,77 @@
       margin-bottom: 40px;
     }
 
-    .title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #e0e0e0;
-    }
+    .title { font-size: 22px; font-weight: 700; color: #e0e0e0; }
 
-    .nav {
-      font-size: 13px;
-      color: #555;
-      transition: color 0.15s;
-    }
+    .nav { font-size: 13px; color: #555; transition: color 0.15s; }
     .nav:hover { color: #c0c0c0; }
-
-    .section {
-      margin-bottom: 40px;
-    }
 
     .section-title {
       font-size: 11px;
       letter-spacing: 1.2px;
       color: #555;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       border-bottom: 1px solid #2a2a2a;
       padding-bottom: 8px;
     }
 
-    .iframe-wrap {
-      width: 100%;
+    /* 요약 카드 */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
       background: #111;
+      border: 1px solid #2a2a2a;
       border-radius: 8px;
-      overflow: hidden;
+      padding: 20px 24px;
     }
 
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      display: block;
+    .stat-label { font-size: 11px; color: #555; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 8px; }
+    .stat-value { font-size: 28px; font-weight: 300; color: #e0e0e0; font-variant-numeric: tabular-nums; }
+    .stat-sub   { font-size: 11px; color: #444; margin-top: 4px; }
+
+    /* 경로 테이블 */
+    .section { margin-bottom: 40px; }
+
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .ref-table th {
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      color: #444;
+      text-transform: uppercase;
+      padding: 0 0 10px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .ref-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid #222;
+      color: #aaa;
+    }
+    .ref-table td:last-child { text-align: right; color: #666; }
+
+    .bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .bar {
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+      flex: 1;
+    }
+    .bar-fill {
+      height: 100%;
+      background: #4a8c5c;
+      border-radius: 2px;
+      transition: width 0.4s ease;
     }
 
-    .link-btn {
+    .open-btn {
       display: inline-block;
-      margin-top: 16px;
+      margin-top: 8px;
       font-size: 12px;
       color: #555;
       border: 1px solid #2a2a2a;
@@ -75,11 +102,14 @@
       border-radius: 4px;
       transition: color 0.15s, border-color 0.15s;
     }
-    .link-btn:hover { color: #c0c0c0; border-color: #555; }
+    .open-btn:hover { color: #c0c0c0; border-color: #555; }
+
+    .loading { color: #444; font-size: 13px; }
+    .error   { color: #664444; font-size: 13px; }
 
     @media (max-width: 600px) {
       body { padding: 24px 20px; }
-      iframe { height: 400px; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -90,14 +120,126 @@
     <a class="nav" href="index.html">← back</a>
   </div>
 
+  <!-- 요약 -->
   <div class="section">
-    <div class="section-title">Statistics</div>
-    <div class="iframe-wrap">
-      <iframe src="https://lifeissogood.goatcounter.com"></iframe>
+    <div class="section-title">Overview</div>
+    <div class="summary-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Visits</div>
+        <div class="stat-value" id="total-visits">—</div>
+        <div class="stat-sub">누적 방문</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Today</div>
+        <div class="stat-value" id="today-visits">—</div>
+        <div class="stat-sub">오늘 방문</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pages</div>
+        <div class="stat-value" id="total-pages">—</div>
+        <div class="stat-sub">추적 페이지 수</div>
+      </div>
     </div>
-    <a class="link-btn" href="https://lifeissogood.goatcounter.com" target="_blank">↗ GoatCounter 대시보드 열기</a>
+  </div>
+
+  <!-- 인기 페이지 -->
+  <div class="section">
+    <div class="section-title">Top Pages</div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Path</th>
+          <th style="text-align:right">Visits</th>
+        </tr>
+      </thead>
+      <tbody id="pages-body">
+        <tr><td colspan="2" class="loading">불러오는 중...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 접속 경로 -->
+  <div class="section">
+    <div class="section-title">Referrers</div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th style="text-align:right">Visits</th>
+        </tr>
+      </thead>
+      <tbody id="ref-body">
+        <tr><td colspan="2" class="loading">불러오는 중...</td></tr>
+      </tbody>
+    </table>
+    <br>
+    <a class="open-btn" href="https://lifeissogood.goatcounter.com" target="_blank">↗ 전체 대시보드 열기</a>
   </div>
 
   <script data-goatcounter="https://lifeissogood.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    const BASE = 'https://lifeissogood.goatcounter.com/api/v0';
+
+    // GoatCounter API 토큰을 아래에 입력하세요
+    // Settings → API tokens → Create token (read-only)
+    const TOKEN = '';
+
+    async function fetchGC(path) {
+      const headers = TOKEN ? { 'Authorization': 'Bearer ' + TOKEN } : {};
+      const res = await fetch(BASE + path, { headers });
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    }
+
+    function renderTable(tbodyId, rows, maxVal) {
+      const tbody = document.getElementById(tbodyId);
+      if (!rows.length) { tbody.innerHTML = '<tr><td colspan="2" class="loading">데이터 없음</td></tr>'; return; }
+      tbody.innerHTML = rows.map(r => `
+        <tr>
+          <td>
+            <div class="bar-wrap">
+              <span>${r.name || r.path || '(direct)'}</span>
+            </div>
+            <div class="bar" style="margin-top:4px"><div class="bar-fill" style="width:${Math.round((r.count/maxVal)*100)}%"></div></div>
+          </td>
+          <td>${r.count.toLocaleString()}</td>
+        </tr>`).join('');
+    }
+
+    async function load() {
+      try {
+        // 전체 통계
+        const hits = await fetchGC('/stats/hits?limit=10');
+        const pages = hits.hits || [];
+        const total = pages.reduce((s, p) => s + p.count, 0);
+        document.getElementById('total-visits').textContent = total.toLocaleString();
+        document.getElementById('total-pages').textContent = pages.length;
+
+        const maxPage = pages[0]?.count || 1;
+        renderTable('pages-body', pages, maxPage);
+
+        // 오늘 방문
+        const today = new Date().toISOString().slice(0, 10);
+        const todayHits = await fetchGC(`/stats/hits?start=${today}&end=${today}&limit=1`);
+        const todayTotal = (todayHits.hits || []).reduce((s, p) => s + p.count, 0);
+        document.getElementById('today-visits').textContent = todayTotal.toLocaleString();
+
+        // 접속 경로
+        const refs = await fetchGC('/stats/refs?limit=10');
+        const refList = refs.refs || [];
+        const maxRef = refList[0]?.count || 1;
+        renderTable('ref-body', refList, maxRef);
+
+      } catch(e) {
+        const msg = TOKEN
+          ? `<tr><td colspan="2" class="error">오류: ${e.message}</td></tr>`
+          : `<tr><td colspan="2" class="error">API 토큰이 필요합니다. visitor_report.html의 TOKEN을 설정해주세요.</td></tr>`;
+        document.getElementById('pages-body').innerHTML = msg;
+        document.getElementById('ref-body').innerHTML = msg;
+      }
+    }
+
+    load();
+  </script>
 </body>
 </html>

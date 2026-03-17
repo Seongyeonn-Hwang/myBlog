@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "나의 하루.md",
+                "file": "999. withoutblog/visitor_report.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "나의 하루"
+              "title": "visitor_report"
             }
           }
         ],
@@ -241,12 +241,13 @@
   },
   "active": "8dc2e2883287e13a",
   "lastOpenFiles": [
+    "나의 하루.md",
+    "999. withoutblog/visitor_report.md",
     "온프레미스 (On-Premises).md",
     "90. Study/Phase 1 - 초급/1. 수학 기초.md",
     "온프레미스 (On-Premises).md.tmp.34344.1773747519391",
     "90. Study/자료모음/MCP.md",
     "90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
-    "나의 하루.md",
     "알 고 싶은 것.md",
     "Habit Tracker.md",
     "999. withoutblog/Template.md",
@@ -281,7 +282,6 @@
     "Diary/무제.md",
     "Diary/와우 아이템 툴팁 테스트.md",
     "Diary/와우 아이템 예시.md",
-    "03. Resources/Game/01. WOW/WOW 한밤.md",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png",

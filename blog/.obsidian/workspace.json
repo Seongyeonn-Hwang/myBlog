@@ -109,16 +109,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "무제 1.md",
+                "file": "나의 하루.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "무제 1"
+              "title": "나의 하루"
+            }
+          },
+          {
+            "id": "372fbdcf04c91bf0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "나의 독서.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "나의 독서"
+            }
+          },
+          {
+            "id": "0e0b8a22ae98ad45",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Habit Tracker.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Habit Tracker"
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -307,12 +335,26 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "a2e6e6d0dc1722c2",
+  "active": "c0a7ade1bddc6c7b",
   "lastOpenFiles": [
-    "나의 하루.md",
+    "900. image",
+    "새 폴더",
+    "999. withoutblog/4. A/IOT SSR Smart Module.md",
     "무제 1.md",
-    "한밤 도핑.md",
+    "999. withoutblog/visitor_report.md",
+    "999. withoutblog/Template.md",
+    "999. withoutblog/About.md",
+    "999. withoutblog/나의 일본 여행.md",
+    "999. withoutblog/4. A",
+    "999. withoutblog/2. A",
+    "999. withoutblog/3. R",
+    "무제 1",
+    "999. withoutblog/1. P",
     "나의 영화.md",
+    "나의 하루.md",
+    "나의 심레이싱.md",
+    "나의 독서.md",
+    "한밤 도핑.md",
     "01. Diary/일본 여행.md",
     "01. Diary/알레르기.md",
     "R0011907.jpg",
@@ -321,38 +363,24 @@
     "01. Diary/주말 끝.md",
     "01. Diary/할게 많네.md",
     "Habit Tracker.md",
-    "999. withoutblog/aboutimage/6.png",
-    "999. withoutblog/나의 일본 여행.md",
-    "999. withoutblog/About.md",
-    "999. withoutblog/Template.md",
-    "999. withoutblog/visitor_report.md",
-    "999. withoutblog/IOT SSR Smart Module.md",
+    "999. withoutblog/4. A/aboutimage/6.png",
     "todo.md",
-    "999. withoutblog/aboutimage/14.png",
+    "999. withoutblog/4. A/aboutimage/14.png",
     "배포파일 정리.md",
     "999. withoutblog/aboutimage/Pasted image 20260320132645.png",
-    "999. withoutblog/aboutimage/Pasted image 20260326200339.png",
-    "999. withoutblog/aboutimage/9.jpg",
-    "999. withoutblog/바우처/무제 2.md",
-    "999. withoutblog/바우처/mobile.pdf",
-    "999. withoutblog/바우처/Receipt.pdf",
+    "999. withoutblog/4. A/aboutimage/Pasted image 20260326200339.png",
+    "999. withoutblog/4. A/aboutimage/9.jpg",
+    "999. withoutblog/4. A/바우처/무제 2.md",
+    "999. withoutblog/4. A/바우처/mobile.pdf",
+    "999. withoutblog/4. A/바우처/Receipt.pdf",
     "999. withoutblog/바우처/미확인 551133.crdownload",
-    "999. withoutblog/바우처/eticket-33476079.pdf",
-    "999. withoutblog/바우처/미확인 991922.crdownload",
-    "999. withoutblog/바우처/미확인 473060.crdownload",
-    "999. withoutblog/바우처",
-    "999. withoutblog/새 폴더",
+    "999. withoutblog/4. A/바우처/eticket-33476079.pdf",
     "999. withoutblog/90. Study/Phase 1 - 초급/3. ML 기초 개념.md",
     "999. withoutblog/90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
     "999. withoutblog/90. Study/AI 학습 로드맵.md",
     "999. withoutblog/90. Study/Phase 1 - 초급/1. 수학 기초.md",
-    "999. withoutblog/90. Study/자료모음/온프레미스 (On-Premises).md",
-    "999. withoutblog/90. Study/자료모음/MCP.md",
-    "999. withoutblog/90. Study/자료모음/알 고 싶은 것.md",
-    "999. withoutblog/90. Study/Phase 4 - 전문가",
-    "999. withoutblog/90. Study/Phase 3 - 고급",
-    "999. withoutblog/aboutimage/18.png",
-    "999. withoutblog/aboutimage/15.png",
+    "999. withoutblog/4. A/aboutimage/18.png",
+    "999. withoutblog/4. A/aboutimage/15.png",
     "무제.canvas",
     "Pasted image 20260303222955.png",
     "Pasted image 20260302220443.png"

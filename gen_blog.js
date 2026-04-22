@@ -5,9 +5,8 @@ const base = path.join(__dirname, 'blog');
 
 function scanDir(dir, relativePath) {
   const items = [];
-  const EXCLUDE = ['999. withoutblog'];
   const entries = fs.readdirSync(dir, { withFileTypes: true })
-    .filter(e => !e.name.startsWith('.') && !EXCLUDE.includes(e.name))
+    .filter(e => !e.name.startsWith('.') && !/^9\d{2}[. ]/.test(e.name))
     .sort((a, b) => {
       if (a.isDirectory() && !b.isDirectory()) return -1;
       if (!a.isDirectory() && b.isDirectory()) return 1;

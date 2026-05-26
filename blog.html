@@ -327,8 +327,12 @@
     }
 
     function obsidianPreprocess(text) {
-      // ![[임베드]] — 무시
-      text = text.replace(/!\[\[([^\]]+)\]\]/g, '');
+      // ![[임베드]] — 이미지는 렌더링, 나머지는 무시
+      text = text.replace(/!\[\[([^\]]+)\]\]/g, (_, p) =>
+        /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(p)
+          ? `<img src="blog/${p}" style="max-width:100%;height:auto;display:block;margin:12px 0;" />`
+          : ''
+      );
 
       // [[파일명|별칭]] / [[파일명]]
       text = text.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, target, alias) => {

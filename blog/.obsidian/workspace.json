@@ -135,16 +135,74 @@
             "id": "0e0b8a22ae98ad45",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "900. image/R0011907.jpg"
+                "file": "999. withoutblog/3. R/Template.md",
+                "mode": "preview",
+                "source": true
               },
-              "icon": "lucide-image",
-              "title": "R0011907"
+              "icon": "lucide-file",
+              "title": "Template"
+            }
+          },
+          {
+            "id": "c3e271f71840de01",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "910. tutorial/Blog.js이 하는 일.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Blog.js이 하는 일"
+            }
+          },
+          {
+            "id": "99353c5932331b59",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "나의 영화.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "나의 영화"
+            }
+          },
+          {
+            "id": "5df5cde15f2353fb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01. Diary/알레르기.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "알레르기"
+            }
+          },
+          {
+            "id": "6a8c1f0f686455f8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01. Diary/일본 여행.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "일본 여행"
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -333,49 +391,50 @@
       "cc-obsidian:Open Obsidian Code": false
     }
   },
-  "active": "c0a7ade1bddc6c7b",
+  "active": "6a8c1f0f686455f8",
   "lastOpenFiles": [
-    "01. Diary/일본 여행.md",
     "01. Diary/알레르기.md",
+    "01. Diary/할게 많네.md",
+    "01. Diary/Obsidian CLI Help.md",
     "나의 심레이싱.md",
-    "Habit Tracker.md",
-    "나의 독서.md",
-    "나의 하루.md",
     "나의 영화.md",
+    "나의 하루.md",
+    "나의 독서.md",
+    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
+    "01. Diary/일본 여행.md",
+    "910. tutorial/블로그 기능.md",
+    "910. tutorial/Blog.js이 하는 일.md",
+    "910. tutorial/Blog.html이 하는 일.md",
+    "무제.md",
+    "Untitled.md",
+    "910. tutorial/Obsidian CLI Help.md",
+    "910. tutorial/Obsidian CLI Help.md.tmp.14652.efb8efb7e7ee",
+    "900. image/R0011907.jpg",
+    "910. tutorial/Obsidian CLI Help.md.tmp.15612.7bc36f69e784",
+    "Habit Tracker.md",
+    "파일.md",
+    "999. withoutblog/visitor_report.md",
+    "999. withoutblog/3. R/Template.md",
+    "999. withoutblog/About.md",
+    "999. withoutblog/4. A/나의 일본 여행.md",
+    "910. tutorial",
+    "01. Diary/일본 여행.md.tmp.15720.1776865232061",
     "01. Diary/점심 산책길.md",
     "900. image",
     "새 폴더",
     "999. withoutblog/4. A/IOT SSR Smart Module.md",
-    "무제 1.md",
-    "999. withoutblog/visitor_report.md",
-    "999. withoutblog/Template.md",
-    "999. withoutblog/About.md",
-    "999. withoutblog/나의 일본 여행.md",
     "999. withoutblog/4. A",
     "999. withoutblog/2. A",
     "999. withoutblog/3. R",
     "무제 1",
-    "999. withoutblog/1. P",
     "한밤 도핑.md",
-    "900. image/R0011907.jpg",
-    "01. Diary/정말로 비전공자가 코딩 할 수 있는 세상이 되었다..md",
     "01. Diary/주말 끝.md",
-    "01. Diary/할게 많네.md",
     "999. withoutblog/4. A/aboutimage/6.png",
     "todo.md",
     "999. withoutblog/4. A/aboutimage/14.png",
-    "배포파일 정리.md",
     "999. withoutblog/aboutimage/Pasted image 20260320132645.png",
     "999. withoutblog/4. A/aboutimage/Pasted image 20260326200339.png",
     "999. withoutblog/4. A/aboutimage/9.jpg",
-    "999. withoutblog/4. A/바우처/무제 2.md",
-    "999. withoutblog/4. A/바우처/mobile.pdf",
-    "999. withoutblog/4. A/바우처/Receipt.pdf",
-    "999. withoutblog/바우처/미확인 551133.crdownload",
-    "999. withoutblog/90. Study/Phase 1 - 초급/3. ML 기초 개념.md",
-    "999. withoutblog/90. Study/Phase 1 - 초급/2. Python 프로그래밍.md",
-    "999. withoutblog/90. Study/AI 학습 로드맵.md",
-    "999. withoutblog/90. Study/Phase 1 - 초급/1. 수학 기초.md",
     "999. withoutblog/4. A/aboutimage/18.png",
     "999. withoutblog/4. A/aboutimage/15.png",
     "무제.canvas",

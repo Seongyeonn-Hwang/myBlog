@@ -40,6 +40,25 @@ blog_vault/ 에서 글 작성 (frontmatter 에 publish: true)
 
 GitHub Pro를 쓰면 private 저장소에서도 Pages를 배포할 수 있어 그 제약이 사라진다. 그래서 저장소를 하나로 합치고, deploy key·cross-repo push·시크릿을 전부 없앴다.
 
+### Pages 는 반드시 "GitHub Actions" 소스여야 한다
+
+저장소 설정 → Pages → Source 가 **GitHub Actions** 여야 한다. 이걸 "Deploy from a branch"
+(`build_type: legacy`) 로 두면 GitHub 자체 빌더가 **저장소 루트 전체를 배포**한다.
+그러면 `pages.yml` 의 `path: '_site'` 경계가 무력화되고 `blog_vault/` 가 그대로 서빙된다.
+
+두 배포가 동시에 돌면서 나중에 끝나는 쪽이 이기기 때문에, 증상이 간헐적으로 나타난다 —
+어떤 push 는 정상으로 보이고 어떤 push 는 전부 새어나간다. 2026-08-24 에 실제로 이 상태였고,
+`publish.js` 가 200 으로 열리는 것으로 발견했다.
+
+확인 방법:
+
+```bash
+gh api repos/Seongyeonn-Hwang/myBlog/pages --jq .build_type   # workflow 여야 한다
+gh run list --limit 4                                          # pages-build-deployment 가 돌면 legacy 다
+```
+
+되돌리기: `gh api -X PUT repos/Seongyeonn-Hwang/myBlog/pages -f build_type=workflow`
+
 **주의: 저장소가 private이어도 Pages 사이트는 공개다.** 사이트 접근 제어는 Enterprise Cloud 기능이라 Pro에는 없다. 따라서 `publish: true` 옵트인 게이트는 여전히 필수다. 저장소를 private으로 만드는 것은 "저장소 열람"을 막을 뿐 "사이트 서빙"을 막지 않는다.
 
 ## `publish: true` 사용법

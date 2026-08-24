@@ -12,7 +12,7 @@
 myBlog/
 ├ blog_vault/                  Obsidian vault. 여기서 글을 쓴다. 서빙되지 않는다.
 ├ blog.html  index.html  about.html  visitor_report.html
-├ blog.css   style.css   font/  image/
+├ style.css  font/  image/
 ├ mirror.js                    publish:true 인 .md 선별 + blog_index.json 생성
 ├ build.sh                     _site/ 조립 + 경계 검증  ← CI와 로컬이 같은 걸 쓴다
 └ .github/workflows/pages.yml  build.sh 실행 → _site/ 만 업로드 → 배포
@@ -172,3 +172,12 @@ npx serve _site         # http://localhost:3000
 - `publish.js` 의 기본 원본: 옮겨둔 백업 폴더. 예전 글을 옮길 때 쓴다.
 - `.gitignore` 에 `blog_vault/.obsidian/` 등록. Obsidian 설정이 저장소에 올라가지 않는다.
 - `/blog/` · `/vault/` 는 실수로 되살아나는 경우를 대비해 무시 규칙에 남겨뒀다.
+
+### 2026-08-24 (3) — 죽은 자산 정리
+
+- `blog.css` 삭제 — 어떤 html 도 link 하지 않았다 (`blog.html` 은 인라인 `<style>`).
+- `font/2002.ttf.ttf`·`font/IyagiGGC.ttf` 삭제 — 참조 0건 (3.8MB).
+- `image/about/**` 22개 삭제 — 2026-07-07 에 about 사진 그리드를 걷어낼 때 남은 잔재 (11MB). 참조 0건.
+- `.claude/settings.local.json` 추적 해제 — 세션마다 바뀌는 개인 도구 상태라 저장소에 둘 이유가 없다. `/.claude/` 를 gitignore.
+
+전부 git 히스토리에 남아있으므로 필요하면 되살릴 수 있다.

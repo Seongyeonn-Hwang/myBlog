@@ -11,6 +11,7 @@ blog_vault/.obsidian/
 /blog/
 /vault/
 
-# 도구 상태
+# 도구 상태 (Claude Code 로컬 설정 포함 — 세션마다 바뀌는 개인 도구 상태다)
+/.claude/
 /.omc/
 /obsidian-vault/

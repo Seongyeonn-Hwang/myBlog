@@ -27,7 +27,6 @@ SITE_ASSETS=(
   about.html
   blog.html
   visitor_report.html
-  blog.css
   style.css
   font
   image

@@ -11,7 +11,7 @@
 ```
 myBlog/
 ├ blog_vault/                  Obsidian vault. 여기서 글을 쓴다. 서빙되지 않는다.
-├ blog.html  index.html  about.html  visitor_report.html
+├ blog.html  index.html  about.html
 ├ style.css  font/  image/
 ├ mirror.js                    publish:true 인 .md 선별 + blog_index.json 생성
 ├ build.sh                     _site/ 조립 + 경계 검증  ← CI와 로컬이 같은 걸 쓴다
@@ -181,3 +181,13 @@ npx serve _site         # http://localhost:3000
 - `.claude/settings.local.json` 추적 해제 — 세션마다 바뀌는 개인 도구 상태라 저장소에 둘 이유가 없다. `/.claude/` 를 gitignore.
 
 전부 git 히스토리에 남아있으므로 필요하면 되살릴 수 있다.
+
+### 2026-08-24 (4) — 기능 축소
+
+- `visitor_report.html` 삭제 — GoatCounter API 토큰이 페이지 소스에 하드코딩돼 있었다.
+  방문자 통계는 https://lifeissogood.goatcounter.com 대시보드에서 직접 본다.
+  **삭제한 토큰은 GoatCounter 설정에서 폐기(revoke)할 것** — 히스토리에는 남아있다.
+- `font/SunBatang-Medium.ttf`(21.3MB) 삭제 — 메인 페이지가 글꼴 하나에 21MB를 로드했다.
+  이제 Inter(구글 폰트) + 시스템 글꼴로 표시된다.
+- 메인 페이지의 KOSPI·KOSDAQ·NASDAQ 시세 위젯 삭제 — 공개 CORS 프록시 3곳을 경유해
+  방문자 브라우저가 서드파티에 요청을 보내는 구조였다.

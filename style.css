@@ -1,11 +1,3 @@
-/* ===== 커스텀 폰트 ===== */
-@font-face {
-  font-family: 'SunBatang';
-  src: url('font/SunBatang-Medium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* ===== Reset ===== */
 *, *::before, *::after {
   margin: 0;
@@ -20,7 +12,7 @@ html, body {
 }
 
 body {
-  font-family: 'SunBatang', 'Inter', 'Apple SD Gothic Neo', sans-serif;
+  font-family: 'Inter', 'Apple SD Gothic Neo', sans-serif;
   background: #fff;
   color: #111;
   display: table;
@@ -37,7 +29,7 @@ body {
 
 /* ===== 이름 ===== */
 .name {
-  font-family: 'SunBatang', 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-weight: 700;
   font-size: 52px;

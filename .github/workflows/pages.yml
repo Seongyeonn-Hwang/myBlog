@@ -1,9 +1,14 @@
 name: Deploy to GitHub Pages
 
+# vault 원본과 사이트 코드가 한 저장소에 있다.
+# 따라서 _site/ 에 무엇이 담기느냐가 공개/비공개를 가르는 유일한 경계다.
+# 그 조립과 검증은 전부 build.sh 안에 있고, 로컬에서 같은 스크립트를 그대로 돌릴 수 있다.
+# 여기에 조립 로직을 인라인으로 적으면 로컬 재현이 불가능해진다 — 하지 않는다.
+
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,16 +26,26 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      # frontmatter에 date: 가 없는 글은 git 최초 추가 시각으로 날짜를 정한다.
+      # 얕은 클론이면 그 조회가 실패해 빌드가 죽는다(조용히 틀리지 않는다).
       - uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          fetch-depth: 0
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 선별 → 조립 → 경계 검증. 어느 단계든 실패하면 배포되지 않는다.
+      - name: Build _site
+        run: ./build.sh
+
+      - uses: actions/configure-pages@v5
+
+      # path 는 '.' 이 아니라 '_site' 다. 이 한 줄이 경계다.
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - id: deployment
         uses: actions/deploy-pages@v4

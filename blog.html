@@ -297,7 +297,6 @@
     <div id="back-btn"><- back</div>
   </div>
 
-  <script src="blog_files.js"></script>
   <script>
     const listView   = document.getElementById('list-view');
     const readerView = document.getElementById('reader-view');
@@ -370,17 +369,63 @@
       return marked.parse(obs, { breaks: true });
     }
 
-    function openFile(item, el) {
+    // 본문 캐시. 세션 내 한정이며 페이지 리로드로 무효화된다.
+    // 원격 .md의 본문이 바뀌어도 같은 세션 안에서는 즉시 반영되지 않는다.
+    const bodyCache = new Map();
+
+    // 경로 세그먼트마다 인코딩 — 한글·괄호가 든 경로("클래스(class).md")가 있다.
+    function fetchBody(path) {
+      if (bodyCache.has(path)) return Promise.resolve(bodyCache.get(path));
+      const url = 'blog/' + path.split('/').map(encodeURIComponent).join('/');
+      return fetch(url)
+        .then(res => {
+          if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+          return res.text();
+        })
+        .then(text => {
+          bodyCache.set(path, text);
+          return text;
+        });
+    }
+
+    // 단조 증가 요청 토큰 — 늦게 도착한 fetch가 화면을 덮어쓰지 못하게 한다.
+    let openToken = 0;
+    function isStale(token) {
+      return token !== openToken || readerView.style.display !== 'block';
+    }
+
+    async function openFile(item, el) {
+      const token = ++openToken;
+
       document.querySelectorAll('.ascii-file.selected').forEach(e => e.classList.remove('selected'));
       el.classList.add('selected');
 
-      readerBody.innerHTML = renderContent(item.content);
+      // 뷰 전환·pushState는 await 앞에서 끝낸다. await 뒤로 밀리면 fetch 지연 중
+      // 뒤로가기 시 popstate → showList 이후에 pushState가 실행돼 히스토리가 꼬인다.
+      listView.style.display   = 'none';
+      readerView.style.display = 'block';
+      window.scrollTo(0, 0);
+      history.pushState({ file: item.path }, '', '');
+
+      readerBody.textContent = '불러오는 중…';
+
+      let content;
+      try {
+        content = await fetchBody(item.path);
+      } catch (err) {
+        if (isStale(token)) return;
+        readerBody.textContent = '본문을 불러오지 못했습니다. (' + item.path + ')';
+        return;
+      }
+      if (isStale(token)) return;
+
+      readerBody.innerHTML = renderContent(content);
 
       // Habit Tracker 특별 렌더링
       if (item.name === 'Habit Tracker') {
-        // raw 마크다운에서 ## 섹션별로 습관 파싱
+        // raw 마크다운에서 ## 섹션별로 습관 파싱 (위와 같은 fetch 결과를 재사용)
         const habits = [];
-        const sections = item.content.split(/^##\s+/m).slice(1);
+        const sections = content.split(/^##\s+/m).slice(1);
         sections.forEach(sec => {
           const lines = sec.trim().split('\n');
           const name = lines[0].trim();
@@ -449,12 +494,6 @@
           if (target) openFile(target, el);
         });
       });
-
-      listView.style.display   = 'none';
-      readerView.style.display = 'block';
-      window.scrollTo(0, 0);
-      history.pushState({ file: item.path }, '', '');
-
     }
 
     function showList() {
@@ -526,16 +565,31 @@
       return diffDays <= 7;
     }
 
-    // 파일 인덱싱
-    indexFiles(BLOG_FILES);
+    // 인덱스 로드 → 파일 인덱싱 → 트리 렌더.
+    // 이 인라인 스크립트는 classic script(type="module" 아님)라 top-level await를
+    // 쓸 수 없다 — 파싱 단계 SyntaxError로 스크립트 전체가 죽는다. async IIFE로 감싼다.
+    (async () => {
+      let files;
+      try {
+        const res = await fetch('blog_index.json');
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        files = await res.json();
+      } catch (err) {
+        // file://로 열면 CORS로 여기 걸린다. 빈 화면 대신 사유를 남긴다.
+        fileTree.textContent = '목록을 불러오지 못했습니다.\n로컬에서 볼 때는 file:// 대신 정적 서버(npx serve)로 열어주세요.';
+        return;
+      }
 
-    // 루트
-    const rootEl = document.createElement('span');
-    rootEl.className = 'ascii-root';
-    rootEl.textContent = 'blog/';
-    fileTree.appendChild(rootEl);
+      indexFiles(files);
 
-    buildTree(BLOG_FILES, fileTree, '');
+      // 루트
+      const rootEl = document.createElement('span');
+      rootEl.className = 'ascii-root';
+      rootEl.textContent = 'blog/';
+      fileTree.appendChild(rootEl);
+
+      buildTree(files, fileTree, '');
+    })();
   </script>
 
   <script data-goatcounter="https://lifeissogood.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

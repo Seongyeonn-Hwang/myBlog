@@ -1,2 +1,11 @@
-/obsidian-vault/
+# 실제 Obsidian vault. 저장소가 public 인 동안에는 절대 커밋하지 않는다.
+# GitHub Pro 구독 후 private 전환 시점에 vault/ 로 옮기면서 이 줄을 지운다.
+/blog/
+
+# 빌드 산출물. 생성물은 커밋하지 않는다.
+/_site/
+/_build/
+
+# 도구 상태
 /.omc/
+/obsidian-vault/

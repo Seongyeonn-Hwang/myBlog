@@ -1,10 +1,15 @@
-# 실제 Obsidian vault. 저장소가 public 인 동안에는 절대 커밋하지 않는다.
-# GitHub Pro 구독 후 private 전환 시점에 vault/ 로 옮기면서 이 줄을 지운다.
+# 로컬 전용 Obsidian vault. 블로그와 무관한 개인 노트가 들어있다.
+# 저장소가 public 인 동안에는 절대 커밋하지 않는다.
 /blog/
 
 # 빌드 산출물. 생성물은 커밋하지 않는다.
 /_site/
 /_build/
+
+# Obsidian 이 vault/ 를 열면 만드는 설정 폴더.
+# 발행되지는 않지만(mirror.js 가 .obsidian/** 를 스캔에서 제외) 저장소에는 올라간다.
+# 지난 유출 251개 경로 중 45개가 이 파일들이었다. 통째로 막는다.
+vault/.obsidian/
 
 # 도구 상태
 /.omc/

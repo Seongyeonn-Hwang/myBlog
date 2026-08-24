@@ -27,6 +27,7 @@ SITE_ASSETS=(
   about.html
   blog.html
   write.html
+  ui-preview.html
   style.css
   font
   image

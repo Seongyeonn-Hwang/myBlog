@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>UI Preview</title>
+  <style>
+    /* image/ui/ 의 자산이 실제로 어떻게 보이는지 확인하는 페이지.
+       파일을 덮어쓰고 새로고침하면 바로 반영된다. 규격은 image/ui/README.md 참조. */
+    :root {
+      --ui-panel-bg:  #242424;
+      --ui-inset-bg:  #1b1b1b;
+      --ui-button-bg: #333333;
+      --ui-button-fg: #c9cbd0;
+      --ui-caption:   #8a8d93;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
+      background: #1a1a1a; color: #bcbec4;
+      padding: 40px 24px 100px; line-height: 1.8;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    h1 { font-size: 20px; color: #dfe1e5; margin-bottom: 4px; }
+    .sub { font-size: 12px; color: #6f7074; margin-bottom: 28px; }
+    h2 { font-size: 15px; color: #dfe1e5; margin: 36px 0 12px; }
+    p  { font-size: 14px; margin-bottom: 12px; }
+    code { background: #111; padding: 1px 6px; border-radius: 3px; color: #98c379; font-family: Consolas, monospace; font-size: 13px; }
+    .note { font-size: 12px; color: #6f7074; margin-top: 8px; }
+
+    /* ===== 9-slice 자산 ===== */
+    .ui-panel {
+      background-color: var(--ui-panel-bg);
+      border: 4px solid transparent;
+      border-image: url("image/ui/panel.png") 8 / 4px repeat;
+      padding: 20px 22px;
+    }
+    .ui-inset {
+      background-color: var(--ui-inset-bg);
+      border: 4px solid transparent;
+      border-image: url("image/ui/panel-inset.png") 8 / 4px repeat;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .ui-button {
+      display: inline-block;
+      background-color: var(--ui-button-bg);
+      color: var(--ui-button-fg);
+      border: 4px solid transparent;
+      border-image: url("image/ui/button.png") 8 / 4px repeat;
+      padding: 8px 18px;
+      font: inherit; font-size: 13px;
+      cursor: pointer;
+    }
+    .ui-button:hover  { border-image: url("image/ui/button-hover.png")  8 / 4px repeat; }
+    .ui-button:active { border-image: url("image/ui/button-active.png") 8 / 4px repeat; }
+
+    .ui-separator {
+      height: 6px; border: 0; margin: 28px 0;
+      background: url("image/ui/separator.png") repeat-x center / auto 6px;
+    }
+
+    figure { margin: 16px 0; }
+    figure .frame {
+      background-color: var(--ui-inset-bg);
+      border: 4px solid transparent;
+      border-image: url("image/ui/panel-inset.png") 8 / 4px repeat;
+      padding: 6px;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { font-size: 12px; color: var(--ui-caption); font-style: italic; margin-top: 8px; text-align: center; }
+
+    /* 타일 원본 확대 보기 */
+    .tiles { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; }
+    .tile { text-align: center; }
+    .tile img {
+      width: 136px; height: 136px;             /* 17px * 8배 */
+      image-rendering: pixelated;
+      background:
+        repeating-conic-gradient(#2a2a2a 0% 25%, #202020 0% 50%) 0 0 / 16px 16px;
+      border: 1px solid #333;
+    }
+    .tile.wide img { width: 128px; height: 96px; }
+    .tile span { display: block; font-size: 11px; color: #6f7074; margin-top: 6px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>UI Preview</h1>
+  <div class="sub"><code>image/ui/</code> 의 파일을 덮어쓰고 새로고침하면 즉시 반영됩니다 · 규격은 <code>image/ui/README.md</code></div>
+
+  <div class="ui-panel">
+    <h2 style="margin-top:0">panel.png — 바깥 패널</h2>
+    <p>글 전체를 감싸는 틀입니다. 이 박스의 테두리가 <code>panel.png</code>이고,
+       안쪽 배경은 CSS 변수 <code>--ui-panel-bg</code>가 칠합니다.</p>
+
+    <hr class="ui-separator" />
+
+    <h2 style="margin-top:0">panel-inset.png — 움푹한 박스</h2>
+    <p>본문에서 그림·차트·인용을 분리할 때 씁니다. 팩토리오 FFF가 그림을 넣을 때 쓰는 그 박스입니다.</p>
+    <div class="ui-inset">
+      본문보다 한 단 들어가 보여야 합니다. 위·왼쪽이 어둡고 아래·오른쪽이 밝으면 파인 느낌이 납니다.
+    </div>
+
+    <h2>figure — 그림 + 캡션</h2>
+    <figure>
+      <div class="frame">
+        <img src="image/blog_main.jpg" alt="샘플" />
+      </div>
+      <figcaption>그림 아래 이탤릭 캡션. 색은 <code>--ui-caption</code>.</figcaption>
+    </figure>
+
+    <hr class="ui-separator" />
+
+    <h2 style="margin-top:0">button.png — 버튼</h2>
+    <p>마우스를 올리거나 눌러보세요. hover / active 파일이 없으면 기본 상태 그대로 보입니다.</p>
+    <p>
+      <button class="ui-button">기본</button>
+      <button class="ui-button">눌러보기</button>
+      <a class="ui-button" href="blog.html">링크형</a>
+    </p>
+
+    <hr class="ui-separator" />
+
+    <h2 style="margin-top:0">separator.png — 구분선</h2>
+    <p>위에 보이는 가로선들이 <code>separator.png</code>를 <code>repeat-x</code>로 깐 것입니다.
+       좌우 끝이 이어지도록 그려야 반복이 자연스럽습니다.</p>
+  </div>
+
+  <h2>타일 원본 (8배 확대)</h2>
+  <p class="note">체크무늬는 투명 영역입니다. 가운데가 비어 있는 게 정상입니다 — 안쪽은 <code>background-color</code>가 칠합니다.</p>
+  <div class="tiles">
+    <div class="tile"><img src="image/ui/panel.png" alt="panel"><span>panel<br>17×17</span></div>
+    <div class="tile"><img src="image/ui/panel-inset.png" alt="panel-inset"><span>panel-inset<br>17×17</span></div>
+    <div class="tile"><img src="image/ui/button.png" alt="button"><span>button<br>17×17</span></div>
+    <div class="tile"><img src="image/ui/button-hover.png" alt="button-hover"><span>button-hover<br>17×17</span></div>
+    <div class="tile"><img src="image/ui/button-active.png" alt="button-active"><span>button-active<br>17×17</span></div>
+    <div class="tile wide"><img src="image/ui/separator.png" alt="separator"><span>separator<br>16×12</span></div>
+  </div>
+</div>
+</body>
+</html>

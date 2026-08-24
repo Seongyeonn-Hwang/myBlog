@@ -26,6 +26,7 @@ SITE_ASSETS=(
   index.html
   about.html
   blog.html
+  write.html
   style.css
   font
   image

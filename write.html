@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Write</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
+      background: #1a1a1a; color: #c0c0c0; min-height: 100vh; padding: 40px 24px 100px;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    h1.page { font-size: 20px; font-weight: 600; color: #dfe1e5; margin-bottom: 4px; }
+    .subtitle { font-size: 12px; color: #6f7074; margin-bottom: 24px; }
+    h2.sub { font-size: 15px; font-weight: 600; color: #dfe1e5; margin: 0 0 12px; }
+    .muted { color: #6f7074; font-size: 13px; }
+    .err  { color: #e07070; font-size: 13px; }
+    .ok   { color: #6aab73; font-size: 13px; }
+    label { display: block; font-size: 12px; color: #888; margin: 14px 0 6px; }
+    input[type="text"], input[type="password"], textarea {
+      width: 100%; background: #111; border: 1px solid #333; border-radius: 6px;
+      color: #dfe1e5; font-family: inherit; font-size: 14px; padding: 10px 12px; outline: none;
+    }
+    input:focus, textarea:focus { border-color: #6aab73; }
+    input:disabled { color: #777; background: #161616; }
+    textarea { min-height: 340px; resize: vertical; line-height: 1.7; font-family: 'Consolas', 'Courier New', monospace; }
+    button {
+      font-family: inherit; font-size: 13px; background: #222; color: #c0c0c0;
+      border: 1px solid #333; border-radius: 6px; padding: 8px 16px; cursor: pointer;
+    }
+    button:hover { background: #2a2a2a; border-color: #555; }
+    button:disabled { opacity: 0.5; cursor: default; }
+    button.primary { background: #2a3a2c; border-color: #4a8c5c; color: #cfe6d4; }
+    button.primary:hover { background: #33472f; }
+    button.danger:hover { background: #3a2222; border-color: #8c4a4a; color: #e6cfcf; }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .spacer { flex: 1; }
+    .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .card { background: #0f0f0f; border: 1px solid #262626; border-radius: 12px; padding: 22px 24px; }
+    .card p, .card li { font-size: 13px; line-height: 1.7; color: #a8a8a8; }
+    .card p { margin: 8px 0; }
+    .card ul { margin: 8px 0 8px 18px; }
+    .card code { background: #222; padding: 1px 6px; border-radius: 3px; color: #98c379; font-family: monospace; }
+    .card a { color: #98c379; }
+    #post-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+    .post-item {
+      text-align: left; background: transparent; border: none; border-radius: 4px;
+      padding: 7px 10px; color: #c0c0c0; font-size: 14px; width: 100%;
+      display: flex; gap: 8px; align-items: baseline;
+    }
+    .post-item:hover { background: #222; color: #fff; }
+    .post-item .badge { font-size: 11px; color: #6aab73; }
+    .post-item .badge.draft { color: #6f7074; }
+    .post-item .dir { font-size: 12px; color: #6f7074; }
+    .editor-block { margin-top: 28px; border-top: 1px solid #262626; padding-top: 24px; }
+    .check { display: flex; gap: 8px; align-items: center; margin-top: 14px; font-size: 13px; color: #a8a8a8; }
+    .check input { accent-color: #6aab73; }
+    .save-status { font-size: 13px; margin-top: 10px; min-height: 18px; }
+    .backlink { font-size: 13px; color: #6f7074; text-decoration: none; }
+    .backlink:hover { color: #c0c0c0; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <h1 class="page">Write</h1>
+    <div class="spacer"></div>
+    <a class="backlink" href="blog.html">&larr; blog</a>
+    <button id="btn-logout" style="display:none">토큰 지우기</button>
+  </div>
+  <div class="subtitle">blog_vault/ 에 커밋 &rarr; GitHub Actions 빌드 &rarr; 약 1분 뒤 반영</div>
+
+  <!-- 토큰 입력 -->
+  <div id="token-view" class="card" style="display:none">
+    <h2 class="sub">GitHub 토큰이 필요합니다</h2>
+    <p>이 페이지는 서버 없이 GitHub API로 직접 커밋합니다. 토큰은 <b>이 브라우저의 localStorage에만</b> 저장되고 GitHub API 외에는 어디에도 전송되지 않습니다.</p>
+    <ul>
+      <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com/settings/personal-access-tokens/new</a> 에서 <b>Fine-grained token</b> 생성</li>
+      <li>Repository access: <b>Only select repositories &rarr; myBlog</b></li>
+      <li>Permissions &rarr; Repository permissions &rarr; <b>Contents: Read and write</b> (그 외 전부 No access)</li>
+    </ul>
+    <label>Personal Access Token</label>
+    <input type="password" id="token-input" placeholder="github_pat_..." autocomplete="off" />
+    <div class="row" style="margin-top:12px">
+      <button class="primary" id="btn-token-save">저장하고 시작</button>
+      <span id="token-status" class="err"></span>
+    </div>
+  </div>
+
+  <!-- 메인 -->
+  <div id="main-view" style="display:none">
+    <div class="row" style="margin-bottom:12px">
+      <h2 class="sub" style="margin:0">글 목록</h2>
+      <div class="spacer"></div>
+      <button id="btn-refresh">새로고침</button>
+      <button class="primary" id="btn-new">+ 새 글</button>
+    </div>
+    <div id="post-list"><div class="muted">불러오는 중…</div></div>
+
+    <div class="editor-block" id="editor" style="display:none">
+      <h2 class="sub" id="editor-title">새 글</h2>
+      <label>폴더 (비우면 vault 루트, 예: 03. Resources/Programming)</label>
+      <input type="text" id="post-dir" placeholder="" />
+      <label>제목 (파일명이 됩니다)</label>
+      <input type="text" id="post-title" placeholder="" />
+      <label>날짜</label>
+      <input type="text" id="post-date" placeholder="YYYY-MM-DD" style="max-width:180px" />
+      <label>본문 (마크다운)</label>
+      <textarea id="post-body" spellcheck="false"></textarea>
+      <div class="check">
+        <input type="checkbox" id="post-publish" checked />
+        <label for="post-publish" style="margin:0">발행 (해제하면 저장은 되지만 블로그에 나오지 않습니다)</label>
+      </div>
+      <div class="row" style="margin-top:16px">
+        <button class="primary" id="btn-save">저장 (커밋 + 배포)</button>
+        <button id="btn-cancel">닫기</button>
+        <div class="spacer"></div>
+        <button class="danger" id="btn-delete" style="display:none">삭제</button>
+      </div>
+      <div class="save-status" id="save-status"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const OWNER = 'Seongyeonn-Hwang';
+const REPO  = 'myBlog';
+const BRANCH = 'master';
+const VAULT = 'blog_vault';
+const SITE  = 'https://seongyeonn-hwang.github.io/myBlog/';
+const TOKEN_KEY = 'myblog_pat';
+const API = 'https://api.github.com';
+
+const $ = id => document.getElementById(id);
+const getToken = () => localStorage.getItem(TOKEN_KEY) || '';
+
+function utf8ToB64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  return btoa(bin);
+}
+function b64ToUtf8(b64) {
+  const bin = atob((b64 || '').replace(/\s/g, ''));
+  return new TextDecoder('utf-8').decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
+}
+function encodePath(p) { return p.split('/').map(encodeURIComponent).join('/'); }
+
+async function ghFetch(path, opts = {}) {
+  return fetch(API + path, {
+    ...opts,
+    headers: {
+      'Authorization': 'Bearer ' + getToken(),
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(opts.headers || {}),
+    },
+  });
+}
+async function ghJson(path, opts) {
+  const res = await ghFetch(path, opts);
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error(body.message || ('GitHub API ' + res.status));
+    err.status = res.status;
+    throw err;
+  }
+  return body;
+}
+
+/* ===== frontmatter =====
+   mirror.js 와 같은 계약: 발행은 최상위 `publish: true`(boolean)뿐이다.
+   발행 해제 시 publish 키를 제거한다 — `publish: false` 는 빌드 경고를 낸다.
+   publish/date 외의 키는 건드리지 않고 보존한다. */
+var FM_RE = /^﻿?---\r?\n([\s\S]*?)\r?\n---[ \t]*\r?\n?/;
+function parseDoc(raw) {
+  const m = FM_RE.exec(raw);
+  if (!m) return { publish: false, date: '', others: [], body: raw };
+  let publish = false, date = '';
+  const others = [];
+  for (const line of m[1].split(/\r?\n/)) {
+    if (/^publish:\s*true\s*$/.test(line)) { publish = true; continue; }
+    if (/^\s*publish\s*:/.test(line)) continue;          // 잘못된 표기는 버린다
+    const dm = /^date:\s*(.+?)\s*$/.exec(line);
+    if (dm && !date) { date = dm[1]; continue; }
+    others.push(line);
+  }
+  return { publish, date, others, body: raw.slice(m[0].length) };
+}
+function buildDoc(doc) {
+  const fm = [];
+  if (doc.publish) fm.push('publish: true');
+  if (doc.date) fm.push('date: ' + doc.date);
+  for (const line of doc.others) if (line.trim() !== '') fm.push(line);
+  if (!fm.length) return doc.body;
+  return '---\n' + fm.join('\n') + '\n---\n\n' + doc.body.replace(/^\s*\n/, '');
+}
+
+/* ===== 원자적 단일 커밋 (Git Trees API) =====
+   deleteFlag 면 해당 경로를 tree 에서 제거한다.
+   non-fast-forward(그 사이 다른 push) 시 처음부터 최대 5회 재시도. */
+async function commitFile(path, content, message, deleteFlag, attempt = 0) {
+  const ref = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/ref/heads/' + BRANCH);
+  const headSha = ref.object.sha;
+  const headCommit = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/commits/' + headSha);
+
+  let entry;
+  if (deleteFlag) {
+    entry = { path: path, mode: '100644', type: 'blob', sha: null };
+  } else {
+    const blob = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/blobs', {
+      method: 'POST',
+      body: JSON.stringify({ content: utf8ToB64(content), encoding: 'base64' }),
+    });
+    entry = { path: path, mode: '100644', type: 'blob', sha: blob.sha };
+  }
+
+  const newTree = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/trees', {
+    method: 'POST',
+    body: JSON.stringify({ base_tree: headCommit.tree.sha, tree: [entry] }),
+  });
+  const newCommit = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/commits', {
+    method: 'POST',
+    body: JSON.stringify({ message: message, tree: newTree.sha, parents: [headSha] }),
+  });
+  const patch = await ghFetch('/repos/' + OWNER + '/' + REPO + '/git/refs/heads/' + BRANCH, {
+    method: 'PATCH',
+    body: JSON.stringify({ sha: newCommit.sha, force: false }),
+  });
+  if (patch.status === 422 && attempt < 5) {
+    return commitFile(path, content, message, deleteFlag, attempt + 1);
+  }
+  if (!patch.ok) {
+    const body = await patch.json().catch(() => ({}));
+    throw new Error(body.message || ('ref 업데이트 실패 (' + patch.status + ')'));
+  }
+  return newCommit.sha;
+}
+
+/* ===== 목록: Trees API 재귀 + 발행 여부는 blog_index.json 대조 ===== */
+async function publishedSet() {
+  try {
+    const res = await fetch(SITE + 'blog_index.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) return new Set();
+    const set = new Set();
+    (function walk(nodes) {
+      for (const n of nodes) {
+        if (n.type === 'file') set.add(n.path);
+        if (n.children) walk(n.children);
+      }
+    })(await res.json());
+    return set;
+  } catch (e) { return new Set(); }
+}
+async function listPosts() {
+  const ref = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/ref/heads/' + BRANCH);
+  const tree = await ghJson('/repos/' + OWNER + '/' + REPO + '/git/trees/' + ref.object.sha + '?recursive=1');
+  return tree.tree
+    .filter(e => e.type === 'blob'
+      && e.path.startsWith(VAULT + '/')
+      && e.path.endsWith('.md')
+      && e.path.indexOf('/.obsidian/') === -1)
+    .map(e => ({ full: e.path, rel: e.path.slice(VAULT.length + 1) }))
+    .sort((a, b) => a.rel.localeCompare(b.rel, 'ko'));
+}
+
+/* ===== UI ===== */
+const state = { editingFull: null, others: [] };  // editingFull: 수정 중인 blog_vault/... 전체 경로
+
+function show(el, on) { el.style.display = on ? '' : 'none'; }
+function today() {
+  const d = new Date(), z = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate());
+}
+function setStatus(msg, cls) {
+  const el = $('save-status');
+  el.textContent = msg;
+  el.className = 'save-status ' + (cls || 'muted');
+}
+
+function renderAuth() {
+  const authed = !!getToken();
+  show($('token-view'), !authed);
+  show($('main-view'), authed);
+  show($('btn-logout'), authed);
+  if (authed) refreshPosts();
+}
+
+async function refreshPosts() {
+  const box = $('post-list');
+  box.innerHTML = '<div class="muted">불러오는 중…</div>';
+  try {
+    const results = await Promise.all([listPosts(), publishedSet()]);
+    const posts = results[0], pub = results[1];
+    box.innerHTML = '';
+    if (!posts.length) { box.innerHTML = '<div class="muted">글이 없습니다. 새 글을 써보세요.</div>'; return; }
+    for (const p of posts) {
+      const b = document.createElement('button');
+      b.className = 'post-item';
+      const parts = p.rel.split('/');
+      const name = parts.pop().replace(/\.md$/, '');
+
+      const badge = document.createElement('span');
+      badge.className = pub.has(p.rel) ? 'badge' : 'badge draft';
+      badge.textContent = pub.has(p.rel) ? '발행' : '초안';
+      b.appendChild(badge);
+      if (parts.length) {
+        const dir = document.createElement('span');
+        dir.className = 'dir';
+        dir.textContent = parts.join('/') + '/';
+        b.appendChild(dir);
+      }
+      const nm = document.createElement('span');
+      nm.textContent = name;
+      b.appendChild(nm);
+
+      b.addEventListener('click', () => openEdit(p.full));
+      box.appendChild(b);
+    }
+  } catch (e) {
+    box.innerHTML = '';
+    const err = document.createElement('div');
+    err.className = 'err';
+    err.textContent = '목록 오류: ' + e.message;
+    box.appendChild(err);
+    if (e.status === 401) { localStorage.removeItem(TOKEN_KEY); renderAuth(); }
+  }
+}
+
+function openNew() {
+  state.editingFull = null;
+  state.others = [];
+  $('editor-title').textContent = '새 글';
+  $('post-dir').value = '';
+  $('post-dir').disabled = false;
+  $('post-title').value = '';
+  $('post-title').disabled = false;
+  $('post-date').value = today();
+  $('post-body').value = '';
+  $('post-publish').checked = true;
+  show($('btn-delete'), false);
+  setStatus('');
+  show($('editor'), true);
+  $('post-title').focus();
+}
+
+async function openEdit(fullPath) {
+  state.editingFull = fullPath;
+  state.others = [];
+  const rel = fullPath.slice(VAULT.length + 1);
+  const parts = rel.split('/');
+  const name = parts.pop().replace(/\.md$/, '');
+  $('editor-title').textContent = '수정: ' + name;
+  $('post-dir').value = parts.join('/');
+  $('post-dir').disabled = true;
+  $('post-title').value = name;
+  $('post-title').disabled = true;
+  $('post-body').value = '불러오는 중…';
+  show($('btn-delete'), true);
+  setStatus('');
+  show($('editor'), true);
+  try {
+    const data = await ghJson('/repos/' + OWNER + '/' + REPO + '/contents/' + encodePath(fullPath) + '?ref=' + BRANCH);
+    const doc = parseDoc(b64ToUtf8(data.content));
+    $('post-date').value = doc.date || today();
+    $('post-publish').checked = doc.publish;
+    $('post-body').value = doc.body;
+    state.others = doc.others;
+  } catch (e) {
+    setStatus('불러오기 실패: ' + e.message, 'err');
+  }
+}
+
+function validate(dir, title, date) {
+  if (!title) return '제목을 입력하세요.';
+  if (/[\\/:*?"<>|]/.test(title)) return '제목에 \\ / : * ? " < > | 는 쓸 수 없습니다.';
+  if (dir.startsWith('/') || dir.indexOf('..') !== -1 || /[\\:*?"<>|]/.test(dir)) return '폴더 경로가 잘못됐습니다.';
+  if (/(^|\/)daily notes(\/|$)/i.test(dir)) return '데일리 노트 폴더에는 발행 글을 둘 수 없습니다 (빌드가 거부합니다).';
+  if (/^91\s*\.?\s*templates(\/|$)/i.test(dir)) return '템플릿 폴더는 빌드 스캔에서 제외됩니다.';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return '날짜는 YYYY-MM-DD 형식이어야 합니다.';
+  return null;
+}
+
+async function save() {
+  const dir   = $('post-dir').value.trim().replace(/\/+$/, '');
+  const title = $('post-title').value.trim();
+  const date  = $('post-date').value.trim();
+  const problem = validate(dir, title, date);
+  if (problem) { setStatus(problem, 'err'); return; }
+
+  const full = state.editingFull
+    || (VAULT + '/' + (dir ? dir + '/' : '') + title + '.md');
+  const publish = $('post-publish').checked;
+  const doc = buildDoc({
+    publish: publish,
+    date: date,
+    others: state.others || [],
+    body: $('post-body').value.replace(/\r\n/g, '\n'),
+  });
+
+  $('btn-save').disabled = true;
+  setStatus('커밋 중…');
+  try {
+    if (!state.editingFull) {
+      // 신규인데 같은 경로가 이미 있으면 덮어쓰지 않는다
+      const head = await ghFetch('/repos/' + OWNER + '/' + REPO + '/contents/' + encodePath(full) + '?ref=' + BRANCH);
+      if (head.ok) { setStatus('같은 이름의 글이 이미 있습니다: ' + full, 'err'); return; }
+    }
+    await commitFile(full, doc, 'web: ' + title, false);
+    state.editingFull = full;
+    $('post-dir').disabled = true;
+    $('post-title').disabled = true;
+    show($('btn-delete'), true);
+    if (publish) {
+      setStatus('커밋 완료 — 배포를 기다리는 중… (약 1분)');
+      const rel = full.slice(VAULT.length + 1);
+      const shown = await waitPublished(rel, true);
+      setStatus(shown
+        ? '발행 완료 — 블로그에 반영됐습니다.'
+        : '커밋은 됐지만 아직 반영 확인이 안 됩니다. CDN 캐시(최대 10분) 때문일 수 있습니다.', shown ? 'ok' : 'muted');
+    } else {
+      setStatus('저장 완료 (초안 — 블로그에는 나오지 않습니다).', 'ok');
+    }
+    refreshPosts();
+  } catch (e) {
+    setStatus('실패: ' + e.message, 'err');
+  } finally {
+    $('btn-save').disabled = false;
+  }
+}
+
+async function removePost() {
+  if (!state.editingFull) return;
+  const rel = state.editingFull.slice(VAULT.length + 1);
+  if (!confirm('정말 삭제할까요?\n' + rel + '\n\n발행돼 있었다면 다음 배포에서 블로그에서도 내려갑니다.')) return;
+  $('btn-delete').disabled = true;
+  setStatus('삭제 커밋 중…');
+  try {
+    await commitFile(state.editingFull, null, 'web: delete ' + rel, true);
+    setStatus('삭제 완료.', 'ok');
+    show($('editor'), false);
+    refreshPosts();
+  } catch (e) {
+    setStatus('삭제 실패: ' + e.message, 'err');
+  } finally {
+    $('btn-delete').disabled = false;
+  }
+}
+
+// 발행 반영 폴링: 배포된 blog_index.json 에 경로가 나타날 때까지, 최대 3분.
+async function waitPublished(rel, expectPresent) {
+  const start = Date.now();
+  while (Date.now() - start < 180000) {
+    await new Promise(r => setTimeout(r, 8000));
+    const pub = await publishedSet();
+    if (pub.has(rel) === expectPresent) return true;
+  }
+  return false;
+}
+
+/* ===== 배선 ===== */
+$('btn-token-save').addEventListener('click', async () => {
+  const t = $('token-input').value.trim();
+  if (!t) { $('token-status').textContent = '토큰을 입력하세요.'; return; }
+  localStorage.setItem(TOKEN_KEY, t);
+  try {
+    await ghJson('/repos/' + OWNER + '/' + REPO);
+    $('token-input').value = '';
+    $('token-status').textContent = '';
+    renderAuth();
+  } catch (e) {
+    localStorage.removeItem(TOKEN_KEY);
+    $('token-status').textContent = '토큰 확인 실패: ' + e.message;
+  }
+});
+$('btn-logout').addEventListener('click', () => {
+  localStorage.removeItem(TOKEN_KEY);
+  show($('editor'), false);
+  renderAuth();
+});
+$('btn-new').addEventListener('click', openNew);
+$('btn-refresh').addEventListener('click', refreshPosts);
+$('btn-save').addEventListener('click', save);
+$('btn-cancel').addEventListener('click', () => show($('editor'), false));
+$('btn-delete').addEventListener('click', removePost);
+
+renderAuth();
+</script>
+</body>
+</html>

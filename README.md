@@ -11,7 +11,7 @@
 ```
 myBlog/
 ├ blog_vault/                  Obsidian vault. 여기서 글을 쓴다. 서빙되지 않는다.
-├ blog.html  index.html  about.html
+├ blog.html  index.html  about.html  write.html
 ├ style.css  font/  image/
 ├ mirror.js                    publish:true 인 .md 선별 + blog_index.json 생성
 ├ build.sh                     _site/ 조립 + 경계 검증  ← CI와 로컬이 같은 걸 쓴다
@@ -122,7 +122,6 @@ npx serve _site         # http://localhost:3000
 
 ## 아직 없는 것
 
-- 브라우저에서 직접 글을 쓰는 웹 에디터(`write.html`)는 vault 분리 이전 버전의 커밋 히스토리에 남아있다. 필요해지면 새 구조에 맞춰 다시 만들어야 한다.
 - 여러 명이 쓰는 것을 가정하지 않는다(1인 전용).
 
 ## 정정: 예전 버전 문서와의 차이
@@ -191,3 +190,18 @@ npx serve _site         # http://localhost:3000
   이제 Inter(구글 폰트) + 시스템 글꼴로 표시된다.
 - 메인 페이지의 KOSPI·KOSDAQ·NASDAQ 시세 위젯 삭제 — 공개 CORS 프록시 3곳을 경유해
   방문자 브라우저가 서드파티에 요청을 보내는 구조였다.
+
+### 2026-08-24 (5) — 웹 에디터 부활 (write.html)
+
+브라우저에서 글을 쓰는 에디터를 새 구조에 맞춰 다시 만들었다. 주소는 `/write.html` (nav 에는 없다).
+
+- **서버 없음.** GitHub Git Trees API 로 `blog_vault/` 에 원자적 단일 커밋을 만든다.
+  push 가 곧 발행이므로, 저장하면 pages.yml 이 돌고 약 1분 뒤 반영된다.
+- **토큰은 소스에 없다.** fine-grained PAT(이 repo 한정, Contents RW)를 사용자가 한 번
+  입력하면 localStorage 에만 저장된다. 예전 visitor_report 처럼 토큰이 페이지에
+  하드코딩되는 방식은 다시 쓰지 않는다.
+- frontmatter 는 mirror.js 계약을 그대로 따른다: 발행 = 최상위 `publish: true`(boolean)만,
+  해제 시 키 제거(`publish: false` 는 빌드 경고를 내므로), 그 외 키는 보존.
+- 목록은 Trees API(초안 포함), 발행 여부 배지는 배포된 `blog_index.json` 대조.
+- 데일리 노트·템플릿 폴더 경로는 에디터가 선차단한다 (빌드가 어차피 거부/제외한다).
+- 동시 push 충돌(non-fast-forward)은 최초 5회 자동 재시도.

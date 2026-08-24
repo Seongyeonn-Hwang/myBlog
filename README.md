@@ -10,7 +10,7 @@
 
 ```
 myBlog/
-├ vault/                       Obsidian vault. 여기서 글을 쓴다. 서빙되지 않는다.
+├ blog_vault/                  Obsidian vault. 여기서 글을 쓴다. 서빙되지 않는다.
 ├ blog.html  index.html  about.html  visitor_report.html
 ├ blog.css   style.css   font/  image/
 ├ mirror.js                    publish:true 인 .md 선별 + blog_index.json 생성
@@ -21,10 +21,10 @@ myBlog/
 ### 발행 흐름
 
 ```
-vault/ 에서 글 작성 (frontmatter 에 publish: true)
+blog_vault/ 에서 글 작성 (frontmatter 에 publish: true)
   └ master 로 push
       └ pages.yml
-          ├ node mirror.js --vault vault --out _build
+          ├ node mirror.js --vault blog_vault --out _build
           │     publish:true 인 .md만 선별 · 날짜 확정 · blog_index.json 생성
           ├ _site/ 조립 (사이트 자산 화이트리스트 + blog/*.md + blog_index.json)
           ├ 가드: 화이트리스트 밖 항목·.md 아닌 파일이 있으면 exit 1
@@ -73,11 +73,11 @@ date: 2026-01-23
 CI와 **똑같은 스크립트**를 돌린다. 배포 전에 결과를 눈으로 확인할 수 있다.
 
 ```bash
-./build.sh              # vault/ 를 읽어 _site/ 를 만든다
+./build.sh              # blog_vault/ 를 읽어 _site/ 를 만든다
 npx serve _site         # http://localhost:3000
 ```
 
-다른 vault 루트로 시험하려면 `VAULT=blog ./build.sh` 처럼 지정한다.
+다른 vault 루트로 시험하려면 `VAULT=다른폴더 ./build.sh` 처럼 지정한다.
 
 `file://`로 `blog.html`을 직접 열면 CORS 때문에 목록을 못 불러온다. 반드시 정적 서버로 열어야 한다(`blog.html`이 그 사유를 화면에 표시한다).
 
@@ -120,8 +120,8 @@ npx serve _site         # http://localhost:3000
 
 1. `mirror.js`를 저장소 루트로 옮기고 `build.sh`를 추가해 조립·검증을 한곳에 모았다. CI(`pages.yml`)가 이 스크립트를 그대로 호출하므로 로컬에서 배포 결과를 재현할 수 있다.
 2. `pages.yml`의 `path: '.'`를 `path: '_site'`로 바꿨다. **이 한 줄이 공개 경계다.** `build.sh`가 화이트리스트 밖의 항목을 발견하면 배포 대신 빌드가 실패한다.
-3. **vault는 새로 만든다.** 기존 100개 노트를 옮기지 않고, 블로그에 올릴 글만 `vault/`로 이동한다. 개인 노트(데일리 노트 47개, mp3 127개, `99. ETC/암호.md`)는 로컬 Obsidian에 남는다. 유출 표면이 구조적으로 작아지고, mtime 기반 날짜 백필이라는 취약한 단계가 제거된다.
-4. **저장소가 public인 동안에는 실제 vault를 커밋하지 않는다.** 현재 `vault/`에 있는 것은 파이프라인 검증용 미끼다. `/blog/`는 gitignore로 막혀 있다.
+3. **vault는 새로 만든다.** 기존 100개 노트를 옮기지 않고, 블로그에 올릴 글만 `blog_vault/`로 이동한다. 개인 노트(데일리 노트 47개, mp3 127개, `99. ETC/암호.md`)는 로컬 Obsidian에 남는다. 유출 표면이 구조적으로 작아지고, mtime 기반 날짜 백필이라는 취약한 단계가 제거된다.
+4. **저장소가 public인 동안에는 실제 vault를 커밋하지 않는다.** 현재 `blog_vault/`에 있는 것은 파이프라인 검증용 미끼다. `/blog/`는 gitignore로 막혀 있다.
 
 ### 2026-08-23 — vault 재분리 + 본문 번들 폐지
 
@@ -138,7 +138,18 @@ npx serve _site         # http://localhost:3000
 
 ## 다른 PC에서 이어가기
 
-- **git에 있음** (clone/pull로 충분): 사이트 코드 전체, `vault/`, `mirror.js`, `build.sh`, 이 `README.md`, `.gitignore`.
+- **git에 있음** (clone/pull로 충분): 사이트 코드 전체, `blog_vault/`, `mirror.js`, `build.sh`, 이 `README.md`, `.gitignore`.
 - **git에 없음**: `_site/`·`_build/`(빌드하면 생김), `/blog/`(로컬 전용 vault 잔여물), `.omc/`.
 
 빌드에 필요한 것은 Node 20 하나뿐이다. 의존성 설치가 없다.
+
+### 2026-08-24 (2) — vault 를 blog_vault/ 로 새로 시작
+
+미끼 vault 를 걷어내고, Obsidian 으로 새로 만든 `blog_vault/` 를 블로그 vault 로 삼았다.
+기존 개인 노트 vault(`blog/`, 242파일)는 **지우지 않고 저장소 밖으로 옮겼다**
+(`C:\Users\murde\Desktop\myBlog-이전볼트-백업\`). 백업이 있어도 원본 삭제는 되돌릴 수 없다.
+
+- `build.sh` 의 기본 vault: `vault` → `blog_vault`
+- `publish.js` 의 기본 원본: 옮겨둔 백업 폴더. 예전 글을 옮길 때 쓴다.
+- `.gitignore` 에 `blog_vault/.obsidian/` 등록. Obsidian 설정이 저장소에 올라가지 않는다.
+- `/blog/` · `/vault/` 는 실수로 되살아나는 경우를 대비해 무시 규칙에 남겨뒀다.

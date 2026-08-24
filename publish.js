@@ -2,7 +2,7 @@
 'use strict';
 
 /*
- * publish.js — 로컬 vault(blog/)의 글을 블로그용 vault/ 로 옮긴다.
+ * publish.js — 예전 vault 의 글을 블로그용 blog_vault/ 로 옮긴다.
  *
  * frontmatter 를 손으로 쓰다 보면 `publish: "true"` 처럼 발행되지 않는 형태로
  * 적기 쉽다. mirror.js 는 boolean true 만 인정한다. 이 스크립트가 그걸 대신 쓴다.
@@ -11,7 +11,7 @@
  *   node publish.js "03. Resources/Programming/클래스(class).md"
  *   node publish.js --list                    옮길 수 있는 후보를 날짜와 함께 출력
  *   node publish.js --dry-run "<경로>"        무엇을 쓸지만 보여주고 파일은 안 건드림
- *   SRC=다른폴더 node publish.js "<경로>"      원본 vault 위치 지정 (기본: blog)
+ *   SRC=다른폴더 node publish.js "<경로>"      원본 vault 위치 지정
  *
  * 날짜는 파일 mtime 에서 가져온다. git 히스토리에 없는 글이라 이게 유일한 단서다.
  * 옮긴 뒤에는 vault/ 쪽이 원본이 되므로, 이후 수정은 vault/ 에서 한다.
@@ -20,8 +20,8 @@
 const fs   = require('fs');
 const path = require('path');
 
-const SRC  = process.env.SRC || 'blog';
-const DEST = 'vault';
+const SRC  = process.env.SRC || "../myBlog-이전볼트-백업";
+const DEST = 'blog_vault';
 
 const DAILY_RE     = /(^|\/)daily notes\//i;
 const TEMPLATES_RE = /^91\s*\.?\s*templates$/i;

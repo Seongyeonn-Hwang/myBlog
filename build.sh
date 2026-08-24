@@ -17,7 +17,7 @@
 
 set -euo pipefail
 
-VAULT="${VAULT:-vault}"
+VAULT="${VAULT:-blog_vault}"
 OUT="_site"
 WORK="_build"
 

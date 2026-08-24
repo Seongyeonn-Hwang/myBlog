@@ -1,15 +1,15 @@
-# 로컬 전용 Obsidian vault. 블로그와 무관한 개인 노트가 들어있다.
-# 저장소가 public 인 동안에는 절대 커밋하지 않는다.
-/blog/
-
 # 빌드 산출물. 생성물은 커밋하지 않는다.
 /_site/
 /_build/
 
-# Obsidian 이 vault/ 를 열면 만드는 설정 폴더.
+# Obsidian 이 blog_vault/ 를 열면 만드는 설정 폴더.
 # 발행되지는 않지만(mirror.js 가 .obsidian/** 를 스캔에서 제외) 저장소에는 올라간다.
 # 지난 유출 251개 경로 중 45개가 이 파일들이었다. 통째로 막는다.
-vault/.obsidian/
+blog_vault/.obsidian/
+
+# 개인 노트용 vault 는 저장소 안에 두지 않는다. 실수로 되살아나는 경우를 대비해 막아둔다.
+/blog/
+/vault/
 
 # 도구 상태
 /.omc/
